@@ -20,6 +20,11 @@ const routes: RouteConfig[] = [
     path: '/videos',
     component: () => import('layouts/MainLayout.vue'),
     children: [{ path: '', component: () => import('pages/videos/Index.vue') }]
+  },
+  {
+    path: '/users',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [{ path: '', component: () => import('pages/users/AddUser.vue') }]
   }
 ]
 

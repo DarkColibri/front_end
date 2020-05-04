@@ -25,7 +25,7 @@ export default {
   props: ['id', 'description', 'subject'],
   methods: {
     selectThread (id) {
-      // alert(id)
+      console.log(id)
     }
   }
 }

@@ -42,7 +42,7 @@ export default {
   data () {
     return {
       editor: '',
-      tasks: [],
+      // tasks: [],
       post: {
         content: '',
         threadId: this.$route.params.id,
@@ -66,8 +66,8 @@ export default {
       console.log('SAVING: ' + JSON.stringify(this.post))
       this.postPosts(this.post)
         .then(response => {
-          console.log('SE HA GUARDADO: ' + JSON.stringify(response.data))
-          // this.getAllPosts(this.$route.params.id)
+          // console.log('SE HA GUARDADO: ' + JSON.stringify(response.data))
+          this.getAllPosts(this.$route.params.id)
         })
       this.$q.notify({
         message: 'Mensaje guardado.',
@@ -101,7 +101,7 @@ export default {
   },
   async created () {
     try {
-      // console.log('POST CREATED ')
+      // console.log('CREAMOS LOS POST DE ' + this.$route.params.id)
       await this.getAllPosts(this.$route.params.id)
       await this.getThread(this.$route.params.id)
       // console.log('Todo creado!!!!!!')

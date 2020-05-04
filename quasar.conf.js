@@ -12,12 +12,17 @@ const { configure } = require('quasar/wrappers')
 
 module.exports = configure(function (ctx) {
   return {
+    // Form Validations
+    plugins: [
+      'vuelidate'
+    ],
     // app boot file (/src/boot)
     // --> boot files are part of "main.js"
     // https://quasar.dev/quasar-cli/cli-documentation/boot-files
     boot: [
       'composition-api',
-      'axios'
+      'axios',
+      'vuelidate'
     ],
 
     // https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-css
@@ -104,7 +109,7 @@ module.exports = configure(function (ctx) {
     devServer: {
       https: false,
       port: 8080,
-      open: true // opens browser window automatically
+      open: false // opens browser window automatically
     },
 
     // animations: 'all', // --- includes all animations
@@ -114,6 +119,18 @@ module.exports = configure(function (ctx) {
     // https://quasar.dev/quasar-cli/developing-ssr/configuring-ssr
     ssr: {
       pwa: false
+      // extendWebpack (cfg) {
+      //   // directly change props of cfg;
+      //   // no need to return anything
+      // },
+      // // -- @quasar/app v1.5+ --
+      // // optional; EQUIVALENT to extendWebpack() but uses webpack-chain;
+      // // the Webserver part ONLY (/src-ssr/)
+      // // which is invoked for production (NOT for dev)
+      // chainWebpack (chain) {
+      //   // chain is a webpack-chain instance
+      //   // of the Webpack configuration
+      // }
     },
 
     // https://quasar.dev/quasar-cli/developing-pwa/configuring-pwa

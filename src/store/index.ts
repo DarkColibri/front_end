@@ -6,6 +6,8 @@ import Vuex from 'vuex'
 
 import threads from './threads'
 import posts from './posts'
+import users from './users'
+
 /*
  * If not building with SSR mode, you can
  * directly export the Store instantiation
@@ -23,7 +25,8 @@ export default store(function ({ Vue }) {
   const Store = new Vuex.Store({
     modules: {
       threads,
-      posts
+      posts,
+      users
     },
     state: {
       tituto: 'Ingeniero Informático'

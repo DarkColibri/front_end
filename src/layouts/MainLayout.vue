@@ -61,10 +61,10 @@ export default {
       leftDrawerOpen: false,
       essentialLinks: [
         {
-          title: 'Docs',
-          caption: 'quasar.dev',
-          icon: 'school',
-          link: 'https://quasar.dev'
+          title: 'Usuarios',
+          caption: 'usuaios',
+          icon: 'account_box',
+          link: '/users'
         },
         {
           title: 'Foro',
@@ -77,6 +77,12 @@ export default {
           caption: '@quasarframework',
           icon: 'ondemand_video',
           link: '/videos'
+        },
+        {
+          title: 'Docs',
+          caption: 'quasar.dev',
+          icon: 'school',
+          link: 'https://quasar.dev'
         },
         {
           title: 'Facebook',

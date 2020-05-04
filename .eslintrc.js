@@ -84,9 +84,18 @@ module.exports = {
     'import/no-extraneous-dependencies': 'off',
     'prefer-promise-reject-errors': 'off',
 
+  
     // TypeScript
     'quotes': ['warn', 'single'],
     '@typescript-eslint/explicit-function-return-type': 'off',
+    
+    // No used var:
+    'no-unused-vars': 'off',
+    '@typescript-eslint/no-unused-vars': 'off',
+
+    '@typescript-eslint/no-var-requires': 'off',
+
+    "@typescript-eslint/prefer-string-starts-ends-with": "off",
 
     // allow debugger during development only
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off'

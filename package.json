@@ -1,8 +1,8 @@
 {
   "name": "quasar_app",
   "version": "0.0.1",
-  "description": "Front-end de la herramienta Delicius Garden.",
-  "productName": "Front-end de la herramienta Delicius Garden.",
+  "description": "Herramienta Delicius Garden.",
+  "productName": "Herramienta Delicius Garden.",
   "cordovaId": "org.cordova.quasar.app",
   "capacitorId": "",
   "author": "Javier Ortega Vicente",
@@ -13,9 +13,18 @@
   },
   "dependencies": {
     "@quasar/extras": "^1.0.0",
+    "@types/bluebird": "^3.5.30",
+    "@types/validator": "^13.0.0",
     "@vue/composition-api": "^0.5.0",
     "axios": "^0.18.1",
-    "quasar": "^1.9.5"
+    "cors": "^2.8.5",
+    "debug": "^4.1.1",
+    "express-list-endpoints": "^4.0.1",
+    "morgan": "^1.10.0",
+    "mysql2": "^2.1.0",
+    "quasar": "^1.9.5",
+    "sequelize": "^5.21.7",
+    "vuelidate": "^0.7.5"
   },
   "devDependencies": {
     "@quasar/app": "^1.6.2",
