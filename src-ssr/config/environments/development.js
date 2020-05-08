@@ -3,7 +3,7 @@ module.exports = {
   DB: {
     username: 'root',
     password: 'ortega',
-    database: 'transmedia_schema',
+    database: 'delicius_garden_schema',
     host: 'localhost',
     dialect: 'mysql',
     logging: false

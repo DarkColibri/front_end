@@ -27,13 +27,14 @@ router.get('/', (req, res) => {
 
 router.get('/threads/:id', (req, res) => {
   const { id } = req.params
-  // console.log('POST.ROUTER GET THREADS: ' + id)
+  console.log('GET http://localhost:8080/api/posts/threads/' + id)
   repository.getThreadsPosts(id)
     .then(result => {
-      // console.log('RESULT: ' + JSON.stringify(result))
+      console.log('RESULT OK: ' + JSON.stringify(result))
       res.json(result)
     })
     .catch(err => {
+      console.log('RESULT Fail:  ' + JSON.stringify(err))
       res.status(404).json({ message: err })
     })
 })

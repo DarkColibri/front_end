@@ -1,6 +1,6 @@
 <template>
   <div id="q-app">
-    <!-- Renderiza el ROUTER -->>
+    <!-- Renderiza el ROUTER -->
     <router-view />
   </div>
 </template>

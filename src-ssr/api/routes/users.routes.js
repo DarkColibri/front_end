@@ -1,4 +1,4 @@
-const debug = require('debug')('web:src-ssr:routes:users')
+const debug = require('debug')('web:src-ssr:api:routes:users')
 const express = require('express')
 
 const db = require('../../db/models')
@@ -11,10 +11,22 @@ const repository = new Repository(db, 'users')
 
 const router = express.Router()
 
+const passport = require('passport')
+const LocalStrategy = require('passport-local').Strategy
+
 router
   .use(cors())
   .use(bodyParser.json())
   .use(compression())
+
+passport.use('local.createUser', new LocalStrategy({
+  passReqToCallback: true
+  // Una vez iniciado el LocalStrategy se ejecuta:
+  // }, (req, name, password, dcone) => {
+}, (req, done) => {
+  console.log('****** PASSPORT *****')
+  console.log(req.body)
+}))
 
 router.get('/', (req, res) => {
   debug('GET ALL')
@@ -43,9 +55,36 @@ router.get('/:id', (req, res) => {
     })
 })
 
+router.get('/:name/:password', (req, res) => {
+  // const { id } = req.params
+  // debug(req)
+  debug(req.method + req.url + ' ' + JSON.stringify(req.params))
+  repository.getUser(req.params)
+    .then(result => {
+      debug('[OK] ' + JSON.stringify(result[0]))
+      res.json(result[0])
+    })
+    .catch(err => {
+      console.log(err)
+      res.status(404).json({ message: err })
+    })
+})
+
+// CREATE USER
 router.post('/', (req, res) => {
   const { body } = req
+  // console.log(passport)
   debug('POST ' + JSON.stringify(body))
+  // PASSPORT
+  // passport.authenticate('local', {
+  //   // Autenticado OK
+  //   successRedirect: '/api/users/profile',
+  //   failureRedirect: '/users'
+  // })
+  // console.log(passport)
+  // console.log('VAMOS A GUARDAR')
+
+  // GUARDAMOS USUARIO
   repository.create(body)
     .then(result => {
       debug('[OK] ' + JSON.stringify(result))
@@ -55,6 +94,18 @@ router.post('/', (req, res) => {
       console.log(err)
       res.status(404).json({ message: err })
     })
+})
+
+// // Cuando carga, cargamos la autenticacion
+// router.post('/', passport.authenticate('local', {
+//   // Autenticado OK
+//   successRedirect: '/',
+//   // Autenticado FAIL
+//   failureRedirect: '/login'
+// }))
+
+router.get('/profile', (req, res) => {
+  res.send('Este es el PROFILE')
 })
 
 router.put('/:id', (req, res) => {

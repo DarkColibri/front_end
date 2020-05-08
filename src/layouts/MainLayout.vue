@@ -2,20 +2,34 @@
   <q-layout view="lHh Lpr lFf">
     <q-header elevated>
       <q-toolbar>
+        <!-- Desplegable -->
         <q-btn
           flat
           dense
           round
           icon="menu"
           aria-label="Menu"
-          @click="leftDrawerOpen = !leftDrawerOpen"
-        />
+          @click="leftDrawerOpen = !leftDrawerOpen"/>
+        <!-- Botón bac -->
+        <q-btn
+          v-if="$route.fullPath.includes('/chat')"
+          v-go-back.single
+          icon="arrow_back"
+          flat
+          dense
+          label="Back" />
+        <!-- Título -->
+        <q-toolbar-title class="absolute-center">{{title}}</q-toolbar-title>
+        <!-- Botón Login -->
+        <q-btn
+          to="/login"
+          class="absolute-right q-pr-sm"
+          icon="account_circle"
+          no-caps
+          flat
+          dense
+          label="Login" />
 
-        <q-toolbar-title>
-          Delicius Garden
-        </q-toolbar-title>
-
-        <div>Quasar v{{ $q.version }}</div>
       </q-toolbar>
     </q-header>
 
@@ -23,14 +37,13 @@
       v-model="leftDrawerOpen"
       show-if-above
       bordered
-      content-class="bg-grey-1"
-    >
+      content-class="bg-grey-1">
       <q-list>
         <q-item-label
           header
           class="text-grey-8"
         >
-          Essential Links
+          Categorías
         </q-item-label>
         <EssentialLink
           v-for="link in essentialLinks"
@@ -48,6 +61,7 @@
 
 <script>
 import EssentialLink from 'components/EssentialLink'
+import { openURL } from 'quasar'
 
 export default {
   name: 'MainLayout',
@@ -55,7 +69,18 @@ export default {
   components: {
     EssentialLink
   },
-
+  computed: {
+    title () {
+      // console.log(this.$route)
+      const currentPath = this.$route.fullPath
+      if (currentPath === '/chat') return 'Chat'
+      else if (currentPath === '/auth') return 'Loguin'
+      else if (currentPath === '/threads') return 'Temas'
+      else if (currentPath === '/posts') return 'Loguin'
+      else if (currentPath === '/') return 'Usuarios'
+      return 'Delicius Garden'
+    }
+  },
   data () {
     return {
       leftDrawerOpen: false,
@@ -64,13 +89,19 @@ export default {
           title: 'Usuarios',
           caption: 'usuaios',
           icon: 'account_box',
-          link: '/users'
+          link: '/'
         },
         {
           title: 'Foro',
           caption: 'forum',
           icon: 'record_voice_over',
           link: '/threads'
+        },
+        {
+          title: 'Chat',
+          caption: 'Chat',
+          icon: 'chat_bubble',
+          link: '/chat'
         },
         {
           title: 'Videos',
@@ -92,6 +123,9 @@ export default {
         }
       ]
     }
+  },
+  methods: {
+    openURL
   }
 }
 </script>

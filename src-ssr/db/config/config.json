@@ -1,8 +1,8 @@
 {
   "development": {
     "username": "root",
-    "password": "ortega",
-    "database": "transmedia_schema",
+    "password": "Ortega_2020",
+    "database": "delicius_garden_schema",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },

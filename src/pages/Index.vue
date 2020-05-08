@@ -2,7 +2,7 @@
 <!-- PRRe -->
 
 <template>
-  <q-page class="row items-center justify-evenly">
+  <q-page class="flex">
     <example-component
       title="Example component"
       active

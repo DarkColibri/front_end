@@ -1,14 +1,14 @@
-const debug = require('debug')('web:src:store:action:users')
+
 import axios from 'axios'
 
 const URL = 'http://localhost:8080/api/users/'
 
-export async function getAllUser ({ commit }) {
+export async function getAllUsers ({ commit }) {
   try {
-    debug('[GET ALL USERS]')
+    console.log('[GET ALL USERS] ' + URL)
     // GET ALL users
     const response = await axios.get(URL)
-    debug('[USERS] ' + JSON.stringify(response.data) + '\n')
+    console.log('[USERS] ' + JSON.stringify(response.data) + '\n')
     //
     commit('getAllUsersMUT', response.data)
   } catch (error) {
@@ -17,12 +17,12 @@ export async function getAllUser ({ commit }) {
   }
 }
 
-export async function getUser ({ commit }, id) {
+export async function getUser ({ commit }, user) {
   try {
-    debug('[GET USER] ' + id + '\n')
+    console.log('[ACTION GET USER] ' + JSON.stringify(user) + '\n')
     // GET user
-    const response = await axios.get(URL + id)
-    debug('[USER] ' + JSON.stringify(response.data) + '\n')
+    const response = await axios.get(URL + user.name + '/' + user.password)
+    console.log('[ACTION USER] ' + JSON.stringify(response.data) + '\n')
     //
     commit('getUserMUT', response.data)
     //
@@ -34,27 +34,26 @@ export async function getUser ({ commit }, id) {
 
 export async function createUser ({ commit }, dataIn) {
   try {
-    debug('[CREATE USER] ' + JSON.stringify(dataIn) + '\n')
+    console.log('[CREATE USER] ' + JSON.stringify(dataIn) + '\n')
     // POST new user
     const instert = await axios.post(URL, dataIn)
-    debug('[CREATED USER] ' + JSON.stringify(instert.data) + '\n')
+    console.log('[CREATED USER] ' + JSON.stringify(instert.data) + '\n')
     // GET ALL users
-    const response = await axios.get(URL)
+    // const response = await axios.get(URL)
     // debug('[ACTION][USERS]' + JSON.stringify(response.data) + '\n')
-    commit('getAllUsersMUT', response.data)
+    commit('getUserMUT', instert.data)
   } catch (error) {
     console.log(error)
-    commit('getAllUsersMUT', null)
+    commit('getUserMUT', null)
   }
 }
 
 export async function updateUser ({ commit }, dataIn, id) {
   try {
-    debug('[UPDATE USER] ' + JSON.stringify(dataIn) + '\n')
-    //
+    console.log('[UPDATE USER] ' + JSON.stringify(dataIn) + '\n')
     const updated = await axios.put(URL + id, dataIn)
     //
-    debug('[UPDATED] ' + JSON.stringify(updated.data))
+    console.log('[USER UPDATED] ' + JSON.stringify(updated.data) + '\n')
     // GET ALL users
     const response = await axios.get(URL)
     // debug('[USERS]' + JSON.stringify(response.data) + '\n')
@@ -66,9 +65,9 @@ export async function updateUser ({ commit }, dataIn, id) {
 
 export async function deleteUser ({ commit }, id) {
   try {
-    debug('[DELETE USER] ' + id + '\n')
+    console.log('[DELETE USER] ' + id + '\n')
     const deleted = await axios.delete(URL + id)
-    debug('[DELETE RESP] ' + deleted + '\n')
+    console.log('[DELETE RESP] ' + deleted + '\n')
     // GET ALL users
     const response = await axios.get(URL)
     // debug('[ACTION][USERS]' + JSON.stringify(response.data) + '\n')

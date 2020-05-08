@@ -1,11 +1,11 @@
 import { RouteConfig } from 'vue-router'
 
 const routes: RouteConfig[] = [
-  {
-    path: '/',
-    component: () => import('layouts/MainLayout.vue'),
-    children: [{ path: '', component: () => import('pages/Index.vue') }]
-  },
+  // {
+  //   path: '/',
+  //   component: () => import('layouts/MainLayout.vue'),
+  //   children: [{ path: '', component: () => import('pages/Index.vue') }]
+  // },
   {
     path: '/threads',
     component: () => import('layouts/MainLayout.vue'),
@@ -22,9 +22,19 @@ const routes: RouteConfig[] = [
     children: [{ path: '', component: () => import('pages/videos/Index.vue') }]
   },
   {
-    path: '/users',
+    path: '/',
     component: () => import('layouts/MainLayout.vue'),
-    children: [{ path: '', component: () => import('pages/users/AddUser.vue') }]
+    children: [{ path: '', component: () => import('pages/users/User.vue') }]
+  },
+  {
+    path: '/login',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [{ path: '', component: () => import('pages/authentication/LoginUser.vue') }]
+  },
+  {
+    path: '/chat',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [{ path: '', component: () => import('pages/chat/Chat.vue') }]
   }
 ]
 

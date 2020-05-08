@@ -1,4 +1,4 @@
-const debug = require('debug')('web:src:db:repositories:base.repositories.js')
+const debug = require('debug')('web:src-src:api:repository:base')
 
 class BaseRepository {
   constructor (db, entity) {
@@ -52,9 +52,18 @@ class BaseRepository {
   // POSTS
   // Meteremos los métodos que no son crud
   getThreadsPosts (thread) {
-    // debug('[REPOSITORY GET THREADS]: ' + thread)
+    debug('REPOSITORY GET THREADS ' + thread)
     return this._db[this.entity].findAll({
       where: { threadId: thread }
+    })
+  }
+
+  // USER
+  // Obtiene un usuario por nobre y password
+  getUser (body) {
+    debug(('REPOSITORY getUser: ' + JSON.stringify(body) + '\n'))
+    return this._db[this.entity].findAll({
+      where: { name: body.name, password: body.password }
     })
   }
 }
