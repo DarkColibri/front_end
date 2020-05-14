@@ -37,3 +37,18 @@ No cambie los nombres de estos dos archivos. Sin embargo, puede agregar cualquie
 
 Cuando /src-ssr/extension.js es utilizado por el servidor de desarrollo, se supone que la configuración está lista para ser utilizada por un servidor Express. Así que planifique en consecuencia. Si cambia a otro servidor, es posible que desee desacoplar extension.js del servidor de producción (index.js).
 
+## GIT HUB
+Crear rama nueva:
+```bash
+// Crea la rama 'nombre_rama'
+git branch [nombre_rama] 
+
+// Muestra las ramas existentes y en la que estamos
+git branch
+
+// Elige la rama 'nomnbre_rama'
+git checkout [nombre_rama]
+
+// Muestra los logs de commits
+git log --oneline
+```
