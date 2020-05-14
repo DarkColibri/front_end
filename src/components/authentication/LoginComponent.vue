@@ -7,7 +7,7 @@
     <q-input v-model="user.name"
       class="q-mb-md"
       filled
-      label="Your name *"
+      label="Your Name *"
       hint="Name and surname"
       lazy-rules
       :rules="[ val => val && val.length > 0 || 'Please type something']"/>
@@ -80,6 +80,9 @@
       <q-btn :label="tab" type="submit" color="primary"/>
       <q-btn label="Reset" type="reset" color="primary" flat class="q-ml-sm" />
     </div>
+
+    <q-input v-if="userState != null" rounded standout v-model="userState.name" label="Rounded standout" />
+    <q-input v-if="userState != null" rounded standout v-model="userState.email" label="Rounded standout" />
   </q-form>
 
 </template>
@@ -184,6 +187,7 @@ export default {
             textColor: 'white',
             icon: 'cloud_done',
             message: 'User ' + this.userState.name + ' created.'
+            // message: 'User created.'
           })
         } else {
         // GET USER
@@ -196,6 +200,7 @@ export default {
             textColor: 'white',
             icon: 'cloud_done',
             message: 'User ' + this.userState.name + ' logged.'
+            // message: 'User logged.'
           })
         }
       } catch (error) {

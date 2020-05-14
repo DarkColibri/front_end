@@ -77,7 +77,7 @@ export default {
       else if (currentPath === '/auth') return 'Loguin'
       else if (currentPath === '/threads') return 'Temas'
       else if (currentPath === '/posts') return 'Loguin'
-      else if (currentPath === '/') return 'Usuarios'
+      else if (currentPath === '/users') return 'Usuarios'
       return 'Delicius Garden'
     }
   },
@@ -89,7 +89,7 @@ export default {
           title: 'Usuarios',
           caption: 'usuaios',
           icon: 'account_box',
-          link: '/'
+          link: '/users'
         },
         {
           title: 'Foro',

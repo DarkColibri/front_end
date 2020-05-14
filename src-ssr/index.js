@@ -8,6 +8,10 @@
  *
  * Note: This file is used only for PRODUCTION. It is not picked up while in dev mode.
  *   If you are looking to add common DEV & PROD logic to the express app, then use
+ *
+ * Nota: Este archivo se usa solo para PRODUCCIÓN. No se recoge mientras está en modo dev.
+ *  Si está buscando agregar lógica DEV y PROD común a la aplicación express, entonces use
+ *
  *   "src-ssr/extension.js"
  */
 // import express from 'express'

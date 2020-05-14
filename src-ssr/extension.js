@@ -10,58 +10,49 @@
  * Note: Changes to this file (but not any file it imports!) are picked up by the
  * development server, but such updates are costly since the dev-server needs a reboot.
  */
-module.exports.extendApp = async function ({ app, ssr }) {
-  const db = require('./db/models')
-  const morgan = require('morgan')
+module.exports.extendApp = function ({ app, ssr }) {
+  const debug = require('debug')('src-ssr:extension')
 
-  const passport = require('passport')
-  const cookieParser = require('cookie-parser')
-  const session = require('express-session')
-  const PassportLocal = require('passport-local').Strategy
+  /**
+   * Reading Environment Variables
+   */
+  const dotenv = require('dotenv')
+  dotenv.config()
 
-  app.use(morgan('dev'))
+  const expressApp = require('./api_authentication/app')
+  /**
+   * Importing the Main App
+   */
+  // const app = require('./app')
+  expressApp(app)
 
-  app.use(cookieParser('Mi ultra secreto'))
-  app.use(session({
-    secret: 'Secreto de sesion',
-    resave: true, // Aunque la sesion no se modifique, se vuelve a guardarv
-    saveUninitialized: true // Si inicializa se sesion y no se le guarda nada, se guarda.
-  }))
-  // PASSPORT
-  require('./api/lib/passport')
-  app.use(passport.initialize())
-  app.use(passport.session())
+  // Esto lo hace el index
+  // app.listen(app.get('port'));
+  // console.log('Server is in port', app.get('port'));
 
-  // passport.use(new PassportLocal(function (username, password, done) {
-  //   // JSON es el objeto con el que se hace sesion
-  //   // done(err, {name: 'Javier'})
-  //   if (username === 'codigofacilito' && password === '12345678') {
-  //     // Buscar en la base de datos
-  //     return done(null, { id: 1, name: 'Cody' })
-  //   }
-  //   // No existe el usuario
-  //   done(null, false)
-  // }))
+  // ============================================================
+  // const db = require('./db/models')
+  // // const morgan = require('morgan')
+  // // app.use(morgan('dev'))
+  // const { host, port } = require('config')
 
-  // passport.serializeUser(function (user, done) {
-  //   done(null, user.id)
-  // })
+  // debug(`CONFIG = HOST:${host}, PORT:${port}`)
 
-  // passport.deserializeUser(function (id, done) {
-  //   done(null, { id: 1, name: 'Cody' })
-  // })
+  // debug('[CONFIG EXPRESS]:')
+  // const expressSetup = require('./config/express')
+  // expressSetup(app)
 
-  // ROUTES
-  app.use('/api/threads', require('./api/routes/threads.routes'))
-  app.use('/api/posts', require('./api/routes/posts.routes'))
-  app.use('/api/users', require('./api/routes/users.routes'))
+  // // ROUTES
+  app.use('/api/threads', require('./routes/threads.routes'))
+  app.use('/api/posts', require('./routes/posts.routes'))
+  app.use('/api/users', require('./routes/users.routes'))
 
-  // SINCRONIZAMOS BD
-  await db.sequelize.sync({ force: false })
-    .then(() => {
-      console.log('BD Conected.')
-    })
-    .catch(err => {
-      console.log(err)
-    })
+  // // SINCRONIZAMOS BD
+  // await db.sequelize.sync({ force: false })
+  //   .then(() => {
+  //     console.log('BD Conected.')
+  //   })
+  //   .catch(err => {
+  //     console.log(err)
+  //   })
 }

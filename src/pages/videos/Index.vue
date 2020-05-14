@@ -7,6 +7,8 @@
     frameborder="0"
     allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
     allowfullscreen></iframe>
+    <iframe width="800" height="450" src="https://www.youtube.com/embed/JaAWdljhD5o?list=RDJaAWdljhD5o" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <iframe width="500" height="250" src="https://www.youtube.com/embed/wDjeBNv6ip0?list=RDJaAWdljhD5o" frameborder="50" allow="accelerometer; ; encrypted-media; gyroscope;" allowfullscreen></iframe>
     <q-video
       :ratio="16/9"
       src="https://www.youtube.com/watch?v=C2mh_pMIHQU"

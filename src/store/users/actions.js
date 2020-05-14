@@ -25,7 +25,6 @@ export async function getUser ({ commit }, user) {
     console.log('[ACTION USER] ' + JSON.stringify(response.data) + '\n')
     //
     commit('getUserMUT', response.data)
-    //
   } catch (error) {
     console.error(error.data)
     commit('getUserMUT', null)
@@ -36,6 +35,8 @@ export async function createUser ({ commit }, dataIn) {
   try {
     console.log('[CREATE USER] ' + JSON.stringify(dataIn) + '\n')
     // POST new user
+    // const instert = await axios.post(URL, dataIn)
+    // const instert = await axios.post('http://localhost:8080/singup', dataIn)
     const instert = await axios.post(URL, dataIn)
     console.log('[CREATED USER] ' + JSON.stringify(instert.data) + '\n')
     // GET ALL users

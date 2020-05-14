@@ -1,8 +1,8 @@
 // require('dotenv').config()
 
-const PRODUCTION = require('./production')
-const DEVELOPMENT = require('./development')
-const QA = require('./qa')
+const PRODUCTION = require('./old.production')
+const DEVELOPMENT = require('./old.development')
+const QA = require('./old.qa')
 const { NODE_ENV } = process.env
 
 let currentEnv = DEVELOPMENT

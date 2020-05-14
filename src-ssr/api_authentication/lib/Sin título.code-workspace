@@ -1,0 +1,15 @@
+{
+	"folders": [
+		{
+			"path": "../../.."
+		},
+		{
+			"path": "../../../../../nodejs-mysql-links"
+		}
+	],
+	"settings": {
+		"vetur.validation.template": false,
+		"typescript.tsdk": "node_modules/typescript/lib",
+		"vetur.experimental.templateInterpolationService": true
+	}
+}

@@ -1,6 +1,6 @@
+const debug = require('debug')('src-ssr:api_authentication:app')
 const express = require('express')
-
-const db = require('../../db/models')
+const db = require('../db/models')
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const compression = require('compression')
@@ -16,6 +16,7 @@ router
   .use(compression())
 
 router.get('/', (req, res) => {
+  debug('GET')
   repository.findAll()
     .then(result => {
       // console.log(JSON.stringify(result))
@@ -27,6 +28,7 @@ router.get('/', (req, res) => {
 })
 
 router.get('/:id', (req, res) => {
+  debug('GET ' + req.params)
   console.log('ROUTER GET')
   const { id } = req.params
   // const id = req.params.id

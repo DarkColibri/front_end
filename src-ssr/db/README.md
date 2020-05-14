@@ -19,9 +19,9 @@ belongsTo() le pertenece un. (0..1)
 sequelize seed:generate --name posts
 
 ## HACER CAMBIOS EN LA BASE DE DATOS:
-sequelize db:migrate
+npx sequelize db:migrate
 
-sequelize db:seed:all
+npx sequelize db:seed:all
 
 
 ## DESHACE CAMBIOS EN LA BASE DE DATOS

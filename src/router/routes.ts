@@ -1,11 +1,11 @@
 import { RouteConfig } from 'vue-router'
 
 const routes: RouteConfig[] = [
-  // {
-  //   path: '/',
-  //   component: () => import('layouts/MainLayout.vue'),
-  //   children: [{ path: '', component: () => import('pages/Index.vue') }]
-  // },
+  {
+    path: '/',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [{ path: '', component: () => import('pages/Index.vue') }]
+  },
   {
     path: '/threads',
     component: () => import('layouts/MainLayout.vue'),
@@ -22,7 +22,7 @@ const routes: RouteConfig[] = [
     children: [{ path: '', component: () => import('pages/videos/Index.vue') }]
   },
   {
-    path: '/',
+    path: '/users',
     component: () => import('layouts/MainLayout.vue'),
     children: [{ path: '', component: () => import('pages/users/User.vue') }]
   },
@@ -35,6 +35,11 @@ const routes: RouteConfig[] = [
     path: '/chat',
     component: () => import('layouts/MainLayout.vue'),
     children: [{ path: '', component: () => import('pages/chat/Chat.vue') }]
+  },
+  {
+    path: '/auth/login',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [{ path: '', component: () => import('pages/auth/login.vue') }]
   }
 ]
 

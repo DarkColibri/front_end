@@ -1,0 +1,32 @@
+env = "production"
+
+host = "0.0.0.0"
+port = "3333"
+
+[db]
+username = "user"
+user = "user"
+password = "password"
+host = "van-git-pro-01.vanadys.com"
+database = "db"
+
+# migration, seeder config
+dialect = "mysql"
+seederStorage = "sequelize"
+
+# models default config
+operatorsAliases = false
+
+  [db.define]
+  freezeTableName = true
+  engine = "InnoDB"
+  charset = "utf8mb4"
+  collate = "utf8mb4_general_ci"
+
+[session]
+secret = 'update-for-prod-in_local-production.toml'
+resave = true
+saveUninitialized = true
+
+  [session.cookie]
+  maxAge = 6048e5 # 7 days

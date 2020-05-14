@@ -1,0 +1,11 @@
+{
+	"folders": [
+		{
+			"path": "../.."
+		},
+		{
+			"path": "../../../../vue-express-sequelize-base.new"
+		}
+	],
+	"settings": {}
+}
