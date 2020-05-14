@@ -1,3 +1,5 @@
+const debug = require('debug')('src-ssr:api_authentication:routes:index')
+
 const express = require('express')
 const router = express.Router()
 

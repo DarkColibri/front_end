@@ -2,20 +2,25 @@ const debug = require('debug')('src-ssr:api_authentication:controller:auth.contr
 const authCtrl = {}
 const passport = require('passport')
 
+// Hace el login
+authCtrl.signIn = passport.authenticate('local.signin', {
+  successRedirect: '/users',
+  failureRedirect: '/signin',
+  failureFlash: true
+})
+
+authCtrl.signUp = passport.authenticate('local.signup', {
+  successRedirect: '/profile',
+  failureRedirect: '/signup',
+  failureFlash: true
+})
+
 authCtrl.renderSignUp = (req, res, next) => {
   debug('SIGNUP')
   res.render('auth/signup')
   // Sigue con el proceso
   next()
 }
-
-authCtrl.signUp = passport.authenticate('local.signup', {
-  successRedirect: '/profile',
-  failureRedirect: '/signup',
-  failureFlash: true
-}, (req, res) => {
-  debug('User Created..... [OK]')
-})
 
 // Muestra pantalla de LOGIN
 authCtrl.renderSignIn = (req, res, next) => {
@@ -24,12 +29,6 @@ authCtrl.renderSignIn = (req, res, next) => {
   // Sigue con el proceso
   next()
 }
-
-authCtrl.signIn = passport.authenticate('local.signin', {
-  successRedirect: '/users',
-  failureRedirect: '/signin',
-  failureFlash: true
-})
 
 authCtrl.logout = (req, res, next) => {
   debug('Logout')

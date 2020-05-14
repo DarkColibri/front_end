@@ -21,12 +21,11 @@ passport.use(
       if (rows.length > 0) {
         const user = rows[0]
         debug('Check password.')
-        const validPassword = await helpers.matchPassword(
-          password,
-          user.password
+        const validPassword = await helpers.matchPassword(password, user.password
         )
         debug('Password OK')
         if (validPassword) {
+          debug('Hacemos el successRedirect')
           done(null, user, req.flash('success', 'Welcome ' + user.username))
         } else {
           done(null, false, req.flash('message', 'Incorrect Password'))

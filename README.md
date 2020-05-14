@@ -28,6 +28,11 @@ $ git checkout master
 $ git merge [nombre_rama]
 ```
 
+**Eliminar** rama:
+```bash
+git -d [nombre_rama]
+```
+
 Configuración del usuario para que no nos lo pida cada  vez que hacemos commit.
 ```bash
 $ git config --global user.name "nombre_usuario"
