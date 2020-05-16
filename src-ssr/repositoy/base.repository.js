@@ -1,4 +1,4 @@
-const debug = require('debug')('web:src-src:api:repository:base')
+const debug = require('debug')('src-src:api:repository:base')
 
 class BaseRepository {
   constructor (db, entity) {
@@ -15,16 +15,16 @@ class BaseRepository {
   }
 
   async findOne (id) {
-    debug('REPOSITORY FIND ONE: ' + id + '\n')
+    debug('REPOSITORY FIND ONE 1: ' + id)
     // debug(req.params)
     const entity = await this._db[this.entity].findOne({ where: { id } })
-    // debug('REQUEST: '+ JSON.stringify( entity ))
+    // debug(JSON.stringify(entity))
     if (!entity) return null
     return entity
   }
 
   async create (body) {
-    debug('REPOSITORY CREATE: ' + JSON.stringify(body) + '\n')
+    debug('REPOSITORY CREATE: ' + JSON.stringify(body))
     const createdEntitY = await this._db[this.entity].create(body)
     // debug('REQUEST: ' + JSON.stringify(createdEntitY))
     if (!createdEntitY) return null
@@ -32,7 +32,7 @@ class BaseRepository {
   }
 
   async update (id, entity) {
-    debug('REPOSITORY UPDATE: ' + id + '\n')
+    debug('REPOSITORY UPDATE: ' + id)
     // No permite nulos. Los eliminamos
     delete entity.createAt
     delete entity.updateAt
@@ -42,7 +42,7 @@ class BaseRepository {
   }
 
   async delete (id) {
-    debug('REPOSITORY DELETE: ' + id + '\n')
+    debug('REPOSITORY DELETE: ' + id)
     const deleted = await this._db[this.entity].destroy({ where: { id } })
     // debug('REQUEST: ' + JSON.stringify(deleted))
     if (!deleted) return null
@@ -60,12 +60,18 @@ class BaseRepository {
 
   // USER
   // Obtiene un usuario por nobre y password
-  getUser (body) {
-    debug(('REPOSITORY getUser: ' + JSON.stringify(body) + '\n'))
+  getUser (name) {
+    debug(('REPOSITORY getUser: ' + name))
     return this._db[this.entity].findAll({
-      where: { name: body.name, password: body.password }
+      where: { name: name }
     })
   }
+  // getUser (body) {
+  //   debug(('REPOSITORY getUser: ' + JSON.stringify(body)))
+  //   return this._db[this.entity].findAll({
+  //     where: { name: body.name, password: body.password }
+  //   })
+  // }
 }
 
 module.exports = BaseRepository

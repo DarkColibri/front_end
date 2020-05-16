@@ -1,4 +1,4 @@
-const debug = require('debug')('web:src-ssr:api:routes:users')
+const debug = require('debug')('src-ssr:routes:users')
 const express = require('express')
 
 const db = require('../db/models')

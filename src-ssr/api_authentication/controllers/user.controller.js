@@ -1,4 +1,4 @@
-const debug = require('debug')('src-ssr:api_authentication:controller:user.controller')
+const debug = require('debug')('src-ssr:api_authentication:controller:user')
 const userCtrl = {}
 
 userCtrl.renderUserProfile = (req, res, next) => {

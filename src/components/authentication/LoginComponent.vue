@@ -8,21 +8,12 @@
     method="POST"
     class="q-gutter-md">
   <!-- <form action="/signin" method="POST"> -->
-    <q-input v-model="fullname" v-if="tab == 'register'"
-      name="fullname"
-      class="q-mb-md"
-      filled
-      label="Your Name *"
-      hint="Name and surname"
-      lazy-rules
-      :rules="[ val => val && val.length > 0 || 'Please type something']"/>
 
- <q-input v-model="username"
+    <q-input v-model="username"
       name="username"
       class="q-mb-md"
       filled
-      label="Your Name *"
-      hint="Name and surname"
+      hint="Name"
       lazy-rules
       :rules="[ val => val && val.length > 0 || 'Please type something']"/>
 
@@ -31,8 +22,33 @@
       class="q-mb-md"
       filled
       type="password"
-      hint="Password with toggle">
+      hint="Password">
     </q-input>
+
+  <q-input v-model="email" v-if="tab == 'register'"
+    name="email"
+    class="q-mb-md"
+    filled
+    hint="email"
+    lazy-rules
+    :rules="[ val => val && val.length > 0 || 'Please type something']"/>
+
+  <q-input v-model="age" v-if="tab == 'register'"
+    name="age"
+    class="q-mb-md"
+    filled
+    type="number"
+    label="Your age *"
+    lazy-rules
+    :rules="[
+      val => val !== null && val !== '' || 'Please type your age',
+      val => val > 0 && val < 110 || 'Please type a real age']"/>
+
+  <q-input v-model="roleId" v-if="tab == 'register'"
+    name="roleId"
+    class="q-mb-md"
+    filled
+    type="number"/>
 
     <!-- <q-input v-model="form.repeatPassword"
       filled
@@ -108,16 +124,18 @@ export default {
       //   // accept: false
       // }
       user: {
-        username: 'javier_FFF',
+        username: 'javier',
         password: 'javier',
         email: null,
         age: null,
         roleId: 3
       },
       // // ------
-      username: 'javier_FFF',
+      username: 'javier',
       password: 'javier',
-      fullname: 'javier'
+      email: 'javier@gmal.com',
+      age: 25,
+      roleId: 3
     }
   },
   computed: {
@@ -188,39 +206,39 @@ export default {
       // }
 
       // CREATE USER
-      try {
-        if (this.tab === 'register') {
-          console.log('USER: ' + JSON.stringify(this.user))
-          await this.createUser(this.user)
-          this.$q.notify({
-            color: 'green-4',
-            textColor: 'white',
-            icon: 'cloud_done',
-            message: 'User ' + this.userState.name + ' created.'
-            // message: 'User created.'
-          })
-        } else {
-        // GET USER
-          console.log('VUE LOGIN: ' + JSON.stringify(this.user))
-          // await this.getUser(this.user)
-          const result = await this.login(this.user)
-          console.log('===============================================')
-          console.log(result)
-          console.log('===============================================')
-          console.log(this.userState)
-          console.log('this.userState ' + this.userState.username)
-          this.$q.notify({
-            color: 'green-4',
-            textColor: 'white',
-            icon: 'cloud_done',
-            message: 'User ' + this.userState.username + ' logged.'
-            // message: 'User logged.'
-          })
-          // this.$router.push('/users')
-        }
-      } catch (error) {
-        console.log(error)
-      }
+      // try {
+      //   if (this.tab === 'register') {
+      //     console.log('USER: ' + JSON.stringify(this.user))
+      //     await this.createUser(this.user)
+      //     this.$q.notify({
+      //       color: 'green-4',
+      //       textColor: 'white',
+      //       icon: 'cloud_done',
+      //       message: 'User ' + this.userState.name + ' created.'
+      //       // message: 'User created.'
+      //     })
+      //   } else {
+      //   // GET USER
+      //     console.log('VUE LOGIN: ' + JSON.stringify(this.user))
+      //     // await this.getUser(this.user)
+      //     const result = await this.login(this.user)
+      //     console.log('===============================================')
+      //     console.log(result)
+      //     console.log('===============================================')
+      //     console.log(this.userState)
+      //     console.log('this.userState ' + this.userState.username)
+      //     this.$q.notify({
+      //       color: 'green-4',
+      //       textColor: 'white',
+      //       icon: 'cloud_done',
+      //       message: 'User ' + this.userState.username + ' logged.'
+      //       // message: 'User logged.'
+      //     })
+      //     // this.$router.push('/users')
+      //   }
+      // } catch (error) {
+      //   console.log(error)
+      // }
       // }
     },
     onReset () {

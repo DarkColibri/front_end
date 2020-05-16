@@ -46,9 +46,7 @@ export default {
     ...mapActions('users', ['getAllUsers'])
   },
   async created () {
-    console.log('Cargamos la página /users')
     await this.getAllUsers()
-    console.log('¡¡¡¡¡¡   F I N  !!!!!!')
   }
 
 }

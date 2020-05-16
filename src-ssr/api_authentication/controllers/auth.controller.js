@@ -1,10 +1,10 @@
-const debug = require('debug')('src-ssr:api_authentication:controller:auth.controler')
+const debug = require('debug')('src-ssr:api_authentication:controller:auth')
 const authCtrl = {}
 const passport = require('passport')
 
 // Hace el login
 authCtrl.signIn = passport.authenticate('local.signin', {
-  successRedirect: '/users',
+  successRedirect: '/profile',
   failureRedirect: '/signin',
   failureFlash: true
 })
@@ -14,6 +14,8 @@ authCtrl.signUp = passport.authenticate('local.signup', {
   failureRedirect: '/signup',
   failureFlash: true
 })
+
+// BORRAR
 
 authCtrl.renderSignUp = (req, res, next) => {
   debug('SIGNUP')
