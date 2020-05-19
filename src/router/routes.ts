@@ -9,7 +9,7 @@ const routes: RouteConfig[] = [
   {
     path: '/threads',
     component: () => import('layouts/MainLayout.vue'),
-    children: [{ path: '', component: () => import('pages/threads/Index.vue') }]
+    children: [{ path: '', component: () => import('pages/threads/Threads.page.vue') }]
   },
   {
     path: '/posts/:id',
@@ -24,7 +24,7 @@ const routes: RouteConfig[] = [
   {
     path: '/users',
     component: () => import('layouts/MainLayout.vue'),
-    children: [{ path: '', component: () => import('pages/users/User.vue') }]
+    children: [{ path: '', component: () => import('pages/users/Users.vue') }]
   },
   {
     path: '/login',

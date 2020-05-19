@@ -1,4 +1,4 @@
-const debug = require('debug')('src-ssr:routes:threads')
+const debug = require('debug')('src-ssr:routes:categories')
 const express = require('express')
 
 const db = require('../db/models')
@@ -7,7 +7,7 @@ const cors = require('cors')
 const compression = require('compression')
 
 const Repository = require('../repositoy/base.repository')
-const repository = new Repository(db, 'threads')
+const repository = new Repository(db, 'categories')
 
 const router = express.Router()
 

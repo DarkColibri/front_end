@@ -54,9 +54,10 @@ module.exports.extendApp = function ({ app, ssr }) {
 
   // // ROUTES
   app.use(require('./routes/auth.routes'))
+  app.use('/api/users', require('./routes/users.routes'))
   app.use('/api/threads', require('./routes/threads.routes'))
   app.use('/api/posts', require('./routes/posts.routes'))
-  app.use('/api/users', require('./routes/users.routes'))
+  app.use('/api/categories', require('./routes/categories.router'))
 
   // // SINCRONIZAMOS BD
   // await db.sequelize.sync({ force: false })

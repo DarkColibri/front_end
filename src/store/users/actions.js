@@ -80,6 +80,7 @@ export async function deleteUser ({ commit }, id) {
   }
 }
 
+// UTILIZAR USUARIO_LOGUEADO
 export async function UserLogin ({ commit }, fullPath) {
   try {
     // console.log('LOGIN: ' + JSON.stringify(user))
@@ -135,4 +136,16 @@ export async function UserLogout ({ commit }) {
 
   console.log('Vamos ha hacer el router.push()')
   this.$router.push('/')
+}
+
+export async function getNameUser ({ commit }, id) {
+  // console.log('ACCTION - http://localhost:8080/api/threads/')
+  try {
+    console.log('getNameUser∫')
+    const response = await axios.get(URL + id)
+    console.log(JSON.stringify(response.data.name))
+    return response.data.name
+  } catch (error) {
+    console.error(error.data)
+  }
 }

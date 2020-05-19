@@ -4,17 +4,21 @@
   Temas
   </q-chip>
   <thread
-    v-for="(thread, index) in threadsState "
+    v-for="(thread, index) in allThreadsState "
       :key="index"
       :id="thread.id"
       :description="thread.description"
-      :subject="thread.subject"/>
+      :subject="thread.subject"
+      :categoryId="thread.categoryId"
+      :userId="thread.userId"
+      :replies="thread.replies"
+      :createdAt="thread.createdAt"/>
   </div>
 </template>
 
 <script>
 import Vuex from 'vuex'
-import Thread from '../../components/threads/Thread'
+import Thread from '../../components/threads/Thread.component'
 
 export default {
   components: {
@@ -23,8 +27,7 @@ export default {
   computed: {
     // Como el namespace está activado...
     // maspState('Nombre del modules', ['Nombre del State'])
-    ...Vuex.mapState('threads', ['threadsState', 'nombre', 'contador']),
-    ...Vuex.mapState(['titulo'])
+    ...Vuex.mapState('threads', ['allThreadsState'])
   },
   methods: {
     ...Vuex.mapActions('threads', ['getAllThreads'])

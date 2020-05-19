@@ -1,7 +1,7 @@
 //  Variables & Objects of store
 export default function () {
   return {
-    threadState: {},
-    allThreadsState: []
+    categoryState: {},
+    allCategoriesState: []
   }
 }

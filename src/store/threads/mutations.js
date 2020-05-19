@@ -6,6 +6,6 @@ export function getThreadMutation (state, data) {
 
 export function getAllThreadMutation (state, data) {
   // console.log('getAllThreadMutation')
-  state.threadsState = data
+  state.allThreadsState = data
   // console.log('STATE.threadsState ' + state.threadsState)
 }

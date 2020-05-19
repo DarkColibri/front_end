@@ -24,12 +24,12 @@ module.exports = function ({ ThreadRouter }) {
   // apiRoute.use('/associations', AssociationRouter)
   // apiRoute.use('/associationscategories', AssociationCategoryRouter)
   // apiRoute.use('/categories', CategoryRouter)
-  apiRoute.use('/threads', ThreadRouter)
+  // apiRoute.use('/threads', ThreadRouter)
   // apiRoute.use('/roles', RoleRouter)
   // apiRoute.use('/posts', PostRouter)
   // apiRoute.use('/users', UserRouter)
 
-  router.use('/api', apiRoute)
+  // router.use('/api', apiRoute)
 
   return router
 }

@@ -133,10 +133,11 @@ export default {
     title () {
       // console.log(this.$route)
       const currentPath = this.$route.fullPath
+      console.log(currentPath)
       if (currentPath === '/chat') return 'Chat'
       else if (currentPath === '/auth') return 'Loguin'
-      else if (currentPath === '/threads') return 'Temas'
-      else if (currentPath === '/posts') return 'Posts'
+      else if (currentPath === '/threads/') return 'Temas'
+      else if (currentPath === '/posts/') return 'Posts'
       else if (currentPath === '/users') return 'Usuarios'
       else if (currentPath === '/profile') return 'Perfil'
       return 'Delicius Garden'
