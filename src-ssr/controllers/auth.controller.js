@@ -5,14 +5,12 @@ const passport = require('passport')
 // LOGIN
 authCtrl.signIn = passport.authenticate('local.signin', {
   successRedirect: '/profile',
-  failureRedirect: '/signin',
-  failureFlash: true
+  failureRedirect: '/signin'
 })
 // SIGNUP
 authCtrl.signUp = passport.authenticate('local.signup', {
   successRedirect: '/profile',
-  failureRedirect: '/signup',
-  failureFlash: true
+  failureRedirect: '/signup'
 })
 
 // LOGOUT
@@ -25,19 +23,19 @@ authCtrl.logout = (req, res, next) => {
 
 // BORRAR
 
-authCtrl.renderSignUp = (req, res, next) => {
-  debug('SIGNUP')
-  res.render('auth/signup')
-  // Sigue con el proceso
-  next()
-}
+// authCtrl.renderSignUp = (req, res, next) => {
+//   debug('SIGNUP')
+//   res.render('auth/signup')
+//   // Sigue con el proceso
+//   next()
+// }
 
-// Muestra pantalla de LOGIN
-authCtrl.renderSignIn = (req, res, next) => {
-  debug('SIGNIN')
-  res.render('auth/signin')
-  // Sigue con el proceso
-  next()
-}
+// // Muestra pantalla de LOGIN
+// authCtrl.renderSignIn = (req, res, next) => {
+//   debug('SIGNIN')
+//   res.render('auth/signin')
+//   // Sigue con el proceso
+//   next()
+// }
 
 module.exports = authCtrl

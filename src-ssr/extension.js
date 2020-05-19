@@ -12,37 +12,54 @@
  */
 module.exports.extendApp = function ({ app, ssr }) {
   const debug = require('debug')('src-ssr:extension')
+  const morgan = require('morgan')
 
+  const session = require('express-session')
+  const passport = require('passport')
+
+  const MySQLStore = require('express-mysql-session')(session)
+  const bodyParser = require('body-parser')
+
+  // CONFIG database
+  const { database } = require('./db/config/keys')
+
+  // Intializations
+  require('./lib/passport')
   /**
    * Reading Environment Variables
    */
   const dotenv = require('dotenv')
   dotenv.config()
 
-  const expressApp = require('./api_authentication/app')
-  /**
-   * Importing the Main App
-   */
-  // const app = require('./app')
-  expressApp(app)
+  // const expressApp = require('./api_authentication/app')
+  // /**
+  //  * Importing the Main App
+  //  */
+  // expressApp(app)
 
-  // Esto lo hace el index
-  // app.listen(app.get('port'));
-  // console.log('Server is in port', app.get('port'));
+  // Middlewares
+  app.use(morgan('dev'))
+  app.use(bodyParser.urlencoded({ extended: false }))
+  app.use(bodyParser.json())
 
-  // ============================================================
-  // const db = require('./db/models')
-  // // const morgan = require('morgan')
-  // // app.use(morgan('dev'))
-  // const { host, port } = require('config')
+  app.use(session({
+    secret: 'faztmysqlnodemysql',
+    resave: false,
+    saveUninitialized: false,
+    store: new MySQLStore(database)
+  }))
+  // app.use(flash())
+  app.use(passport.initialize())
+  app.use(passport.session())
 
-  // debug(`CONFIG = HOST:${host}, PORT:${port}`)
-
-  // debug('[CONFIG EXPRESS]:')
-  // const expressSetup = require('./config/express')
-  // expressSetup(app)
+  // Global variables
+  app.use((req, res, next) => {
+    // app.locals.user = req.user
+    next()
+  })
 
   // // ROUTES
+  app.use(require('./routes/auth.routes'))
   app.use('/api/threads', require('./routes/threads.routes'))
   app.use('/api/posts', require('./routes/posts.routes'))
   app.use('/api/users', require('./routes/users.routes'))

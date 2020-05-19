@@ -16,22 +16,4 @@ router.get('/logout', logout, (req, res) => {
   debug('Logout.......  [OK].')
 })
 
-// B O R R A R
-
-// SIGNUP: Muestra la pantalla de ALTA usuario
-router.get('/signup', renderSignUp, (req, res) => {
-  debug('Vew signup render.... [OK]')
-  debug(req.user)
-  debug('SESSION ID:' + req.sessionID)
-  debug(req.session)
-})
-
-// LOGIN: Mostrar Pantalla
-router.get('/signin', renderSignIn, (req, res) => {
-  debug('Vew login render.... [OK]')
-  debug(req.user)
-  debug('SESSION ID:' + req.sessionID)
-  debug(req.session)
-})
-
 module.exports = router

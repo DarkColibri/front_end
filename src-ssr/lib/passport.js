@@ -3,10 +3,8 @@ const debug = require('debug')('src-ssr:api_authentication:lib:passport')
 const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
 
-// const pool = require('../database')
-
-const db = require('../../db/models')
-const Repository = require('../../repositoy/base.repository')
+const db = require('../db/models')
+const Repository = require('../repositoy/base.repository')
 const repository = new Repository(db, 'users')
 
 const helpers = require('./helpers')

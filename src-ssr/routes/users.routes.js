@@ -6,7 +6,7 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 const compression = require('compression')
 
-const { isLoggedIn } = require('../api_authentication/lib/auth')
+const { isLoggedIn } = require('../lib/auth')
 
 const Repository = require('../repositoy/base.repository')
 const repository = new Repository(db, 'users')
@@ -44,7 +44,7 @@ router.get('/', (req, res) => {
 })
 
 router.get('/getUserLogin', (req, res) => {
-  // debug('ROUTER DE TOA LA VIDA >> getUserLogin')
+  debug('ROUTER DE TOA LA VIDA >> getUserLogin')
   if (isLoggedIn(req, res)) {
     debug(req.user)
     res.send(req.user)
