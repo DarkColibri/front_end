@@ -3,7 +3,7 @@ const userCtrl = {}
 
 userCtrl.renderUserProfile = (req, res, next) => {
   debug('Render view profile.')
-  res.render('profile')
+  res.render('profiles')
   debug('Next ...')
   next()
 }

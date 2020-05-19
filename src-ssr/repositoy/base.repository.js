@@ -15,10 +15,11 @@ class BaseRepository {
   }
 
   async findOne (id) {
-    debug('REPOSITORY FIND ONE 1: ' + id)
+    debug('REPOSITORY FIND ONE : ' + id)
     // debug(req.params)
     const entity = await this._db[this.entity].findOne({ where: { id } })
-    // debug(JSON.stringify(entity))
+    debug('REPOSITORY REQUEST: ' + JSON.stringify(entity))
+
     if (!entity) return null
     return entity
   }

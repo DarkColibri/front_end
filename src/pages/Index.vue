@@ -3,6 +3,18 @@
 
 <template>
   <q-page class="flex">
+    <header class="masthead d-flex">
+        <div class="container text-center my-auto">
+            <h4 class="mb-1">* Bienvenido a Delicius Garden *</h4>
+            <h5 class="mb-5">
+                <em>Store your favorite Website's Links!</em>
+            </h5>
+            <a class="btn btn-primary btn-lg" href="/login">
+                Let's get started
+            </a>
+        </div>
+        <div class="overlay"></div>
+    </header>
     <example-component
       title="Example component"
       active

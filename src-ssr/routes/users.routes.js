@@ -6,6 +6,8 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 const compression = require('compression')
 
+const { isLoggedIn } = require('../api_authentication/lib/auth')
+
 const Repository = require('../repositoy/base.repository')
 const repository = new Repository(db, 'users')
 
@@ -39,6 +41,18 @@ router.get('/', (req, res) => {
       console.log(err)
       res.json({ message: err })
     })
+})
+
+router.get('/getUserLogin', (req, res) => {
+  // debug('ROUTER DE TOA LA VIDA >> getUserLogin')
+  if (isLoggedIn(req, res)) {
+    debug(req.user)
+    res.send(req.user)
+  } else {
+    debug('Usuario no logeado.')
+    res.status(401).send()
+    // res.send()
+  }
 })
 
 router.get('/:id', (req, res) => {
@@ -85,10 +99,6 @@ router.post('/', (req, res) => {
       console.log(err)
       res.status(404).json({ message: err })
     })
-})
-
-router.get('/profile', (req, res) => {
-  res.send('Este es el PROFILE')
 })
 
 router.put('/:id', (req, res) => {

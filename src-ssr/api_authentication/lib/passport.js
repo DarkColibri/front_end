@@ -91,6 +91,6 @@ passport.deserializeUser(async (id, done) => {
     email: rows.email,
     roleId: rows.roleId
   }
-  debug(user)
+  debug('User deserializado: ' + JSON.stringify(user))
   done(null, user)
 })

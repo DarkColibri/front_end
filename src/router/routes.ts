@@ -37,9 +37,9 @@ const routes: RouteConfig[] = [
     children: [{ path: '', component: () => import('pages/chat/Chat.vue') }]
   },
   {
-    path: '/auth/login',
+    path: '/profile',
     component: () => import('layouts/MainLayout.vue'),
-    children: [{ path: '', component: () => import('pages/auth/login.vue') }]
+    children: [{ path: '', component: () => import('pages/profile/Profile.vue') }]
   }
 ]
 

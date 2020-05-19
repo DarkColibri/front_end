@@ -2,7 +2,8 @@ const debug = require('debug')('src:store:USERS:mutations')
 
 export function getUserMUT (state, data) {
   state.userState = data
-  debug('userState :' + JSON.stringify(state.userState.username))
+  debug('MUTATIONS GET USER')
+  debug('userState :' + JSON.stringify(state.userState))
 }
 
 export function getAllUsersMUT (state, data) {

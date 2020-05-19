@@ -2,18 +2,26 @@ const debug = require('debug')('src-ssr:api_authentication:controller:auth')
 const authCtrl = {}
 const passport = require('passport')
 
-// Hace el login
+// LOGIN
 authCtrl.signIn = passport.authenticate('local.signin', {
   successRedirect: '/profile',
   failureRedirect: '/signin',
   failureFlash: true
 })
-
+// SIGNUP
 authCtrl.signUp = passport.authenticate('local.signup', {
   successRedirect: '/profile',
   failureRedirect: '/signup',
   failureFlash: true
 })
+
+// LOGOUT
+authCtrl.logout = (req, res, next) => {
+  debug('Logout')
+  req.logOut()
+  res.redirect('/')
+  next()
+}
 
 // BORRAR
 
@@ -29,13 +37,6 @@ authCtrl.renderSignIn = (req, res, next) => {
   debug('SIGNIN')
   res.render('auth/signin')
   // Sigue con el proceso
-  next()
-}
-
-authCtrl.logout = (req, res, next) => {
-  debug('Logout')
-  req.logOut()
-  res.redirect('/')
   next()
 }
 
