@@ -1,5 +1,6 @@
-const debug = require('debug')('src-ssr:api_authentication:app')
+const debug = require('debug')('src-ssr:routes:threads')
 const express = require('express')
+
 const db = require('../db/models')
 const bodyParser = require('body-parser')
 const cors = require('cors')

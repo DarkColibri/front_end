@@ -31,12 +31,6 @@ module.exports.extendApp = function ({ app, ssr }) {
   const dotenv = require('dotenv')
   dotenv.config()
 
-  // const expressApp = require('./api_authentication/app')
-  // /**
-  //  * Importing the Main App
-  //  */
-  // expressApp(app)
-
   // Middlewares
   app.use(morgan('dev'))
   app.use(bodyParser.urlencoded({ extended: false }))
