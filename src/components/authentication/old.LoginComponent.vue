@@ -81,8 +81,8 @@
       <q-btn label="Reset" type="reset" color="primary" flat class="q-ml-sm" />
     </div>
 
-    <q-input v-if="userState != null" rounded standout v-model="userState.name" label="Rounded standout" />
-    <q-input v-if="userState != null" rounded standout v-model="userState.email" label="Rounded standout" />
+    <q-input v-if="userLogin != null" rounded standout v-model="userLogin.name" label="Rounded standout" />
+    <q-input v-if="userLogin != null" rounded standout v-model="userLogin.email" label="Rounded standout" />
   </q-form>
 
 </template>
@@ -111,7 +111,7 @@ export default {
     }
   },
   computed: {
-    ...mapState('users', ['userState'])
+    ...mapState('users', ['userLogin'])
   },
   validations: {
     user: {
@@ -186,20 +186,20 @@ export default {
             color: 'green-4',
             textColor: 'white',
             icon: 'cloud_done',
-            message: 'User ' + this.userState.name + ' created.'
+            message: 'User ' + this.userLogin.name + ' created.'
             // message: 'User created.'
           })
         } else {
         // GET USER
           console.log('VUE LOGIN: ' + JSON.stringify(this.user))
           await this.getUser(this.user)
-          console.log(this.userState)
-          console.log('this.userState ' + this.userState.name)
+          console.log(this.userLogin)
+          console.log('this.userLogin ' + this.userLogin.name)
           this.$q.notify({
             color: 'green-4',
             textColor: 'white',
             icon: 'cloud_done',
-            message: 'User ' + this.userState.name + ' logged.'
+            message: 'User ' + this.userLogin.name + ' logged.'
             // message: 'User logged.'
           })
         }

@@ -18,20 +18,20 @@ passport.use(
       passReqToCallback: true
     },
     async (req, username, password, done) => {
-      debug('SignIn ' + username)
+      // debug('SignIn ' + username)
       const rows = await repository.getUser(username)
 
-      debug('Existe usuario..... [OK]')
+      // debug('Existe usuario..... [OK]')
       if (rows.length > 0) {
         const user = rows[0].dataValues
-        debug(user)
+        // debug(user)
         const validPassword = await helpers.matchPassword(password, user.password)
         if (validPassword) {
-          debug('Passwords OK - SuccessRedirect >>>>>')
+          // debug('Passwords OK - SuccessRedirect >>>>>')
           // done(null, user, req.flash('success', 'Welcome ' + user.username))
           done(null, user)
         } else {
-          debug('Passwords FAIL - failureRedirect >>>>>')
+          // debug('Passwords FAIL - failureRedirect >>>>>')
           // done(null, false, req.flash('message', 'Incorrect Password'))
           done(null, false)
         }
@@ -51,8 +51,8 @@ passport.use(
       passReqToCallback: true
     },
     async (req, username, password, done) => {
-      debug('SignUp')
-      debug(req.body)
+      // debug('SignUp')
+      // debug(req.body)
       const { email, age, roleId } = req.body
       const newUser = {
         name: username,
@@ -61,11 +61,11 @@ passport.use(
         age: age,
         roleId: roleId
       }
-      debug('Encrypt password')
+      // debug('Encrypt password')
       newUser.password = await helpers.encryptPassword(password)
 
       // Saving in the Database
-      debug('Saving user in Database')
+      // debug('Saving user in Database')
       const resultado = await repository.create(newUser)
       newUser.id = resultado.id
       return done(null, newUser)
@@ -74,12 +74,12 @@ passport.use(
 )
 
 passport.serializeUser((user, done) => {
-  debug('Serialize user. Asignamos el user.id' + user.id)
+  // debug('Serialize user. Asignamos el user.id' + user.id)
   done(null, user.id)
 })
 
 passport.deserializeUser(async (id, done) => {
-  debug('DesSerialize user. BUSCAMOS EL USUARIO EN LA BD.')
+  // debug('DesSerialize user. BUSCAMOS EL USUARIO EN LA BD.')
   const rows = await repository.findOne(id)
   const user = {
     id: rows.id,
@@ -89,6 +89,6 @@ passport.deserializeUser(async (id, done) => {
     email: rows.email,
     roleId: rows.roleId
   }
-  debug('User deserializado: ' + JSON.stringify(user))
+  // debug('User deserializado: ' + JSON.stringify(user))
   done(null, user)
 })

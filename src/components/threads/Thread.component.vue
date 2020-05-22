@@ -1,22 +1,47 @@
 <template>
-<div class="q-pa-md bg-grey-3" >
+  <div>
     <q-list>
-      <q-item>
-        <router-link :to="'/posts/' + id">
-          <q-item-section>
-            <q-item-label>{{subject}}</q-item-label>
-            <q-item-label caption lines="10">{{description}}</q-item-label>
-          </q-item-section>
-        </router-link>
-        <q-item-section side top>
-          <q-item-label caption>{{date}}</q-item-label>
-          <q-item-label caption>{{user}}</q-item-label>
-          <q-item-label caption>{{category}}</q-item-label>
-          <q-icon name="star" color="yellow" />
-        </q-item-section>
-      </q-item>
+      <q-card class="bg-grey-3" flat bordered>
 
-      <q-separator spaced inset />
+        <div class="row">
+          <div class="col q-pa-md">Categoría: {{category}}</div>
+        </div>
+        <q-separator />
+
+        <router-link :to="'/posts/' + id">
+          <q-card-section horizontal>
+            <div class="q-pa-md">
+              <div class="row text-h5 q-mt-sm q-mb-xs">{{subject}}</div>
+              <div class="row text-caption text-grey">{{description}}</div>
+            </div>
+          </q-card-section>
+        </router-link>
+
+        <q-separator />
+
+        <q-card-section horizontal>
+          <div class="q-pa-md">
+            <div class="text-subtitle2">User:  {{user}}</div>
+          </div>
+          <div class="q-pa-md absolute-right">
+            <div class="text-subtitle2">Created at {{date}}</div>
+          </div>
+        </q-card-section>
+
+        <div v-if="userLogin.roleId === 1">
+          <q-separator />
+          <div class="row">
+            <div class="col">
+              <q-btn @click="modificar()" color="primary" flat>Modificar</q-btn>
+            </div>
+            <div class="col">
+              <q-btn @click="eliminar()" color="primary" flat>Borrar</q-btn>
+            </div>
+          </div>
+        </div>
+      </q-card>
+
+<!--  ======================================================================== -->
     </q-list>
   </div>
 </template>
@@ -35,11 +60,38 @@ export default {
       date: ''
     }
   },
+  computed: {
+    ...Vuex.mapState('users', ['userLogin'])
+  },
   methods: {
     ...Vuex.mapActions('categories', ['getNameCategory']),
-    ...Vuex.mapActions('users', ['getNameUser'])
+    ...Vuex.mapActions('users', ['getNameUser']),
+    ...Vuex.mapActions('threads', ['getAllThreads', 'deleteThread']),
+    modificar () {
+      this.$router.push('/threads/add/' + this.id)
+    },
+    eliminar () {
+      this.$q.dialog({
+        title: '¡Atención!',
+        message: '¿Está seguro de que quiere eliminar el foro: "' + this.subject + '"?',
+        cancel: true,
+        persistent: true
+      }).onOk(async () => {
+        // DELETE
+        const deleted = await this.deleteThread(this.id)
+        console.log('DELETED: ' + deleted)
+        // RELOAD
+        await this.getAllThreads()
+        this.$router.push('/threads')
+      })
+    }
   },
-  async mounted () {
+  async created () {
+    this.category = await this.getNameCategory(this.categoryId)
+    this.user = await this.getNameUser(this.userId)
+    this.date = timeagoInstance.format(this.createdAt)
+  },
+  async updated () {
     this.category = await this.getNameCategory(this.categoryId)
     this.user = await this.getNameUser(this.userId)
     this.date = timeagoInstance.format(this.createdAt)

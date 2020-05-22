@@ -15,17 +15,17 @@ class BaseRepository {
   }
 
   async findOne (id) {
-    debug('REPOSITORY FIND ONE : ' + id)
+    // debug('REPOSITORY FIND ONE : ' + id)
     // debug(req.params)
     const entity = await this._db[this.entity].findOne({ where: { id } })
-    debug('REPOSITORY REQUEST: ' + JSON.stringify(entity))
+    // debug('REPOSITORY REQUEST: ' + JSON.stringify(entity))
 
     if (!entity) return null
     return entity
   }
 
   async create (body) {
-    debug('REPOSITORY CREATE: ' + JSON.stringify(body))
+    // debug('REPOSITORY CREATE: ' + JSON.stringify(body))
     const createdEntitY = await this._db[this.entity].create(body)
     // debug('REQUEST: ' + JSON.stringify(createdEntitY))
     if (!createdEntitY) return null
@@ -53,7 +53,7 @@ class BaseRepository {
   // POSTS
   // Meteremos los métodos que no son crud
   getThreadsPosts (thread) {
-    debug('REPOSITORY GET THREADS ' + thread)
+    // debug('REPOSITORY GET THREADS ' + thread)
     return this._db[this.entity].findAll({
       where: { threadId: thread }
     })
@@ -62,17 +62,26 @@ class BaseRepository {
   // USER
   // Obtiene un usuario por nobre y password
   getUser (name) {
-    debug(('REPOSITORY getUser: ' + name))
+    // debug(('REPOSITORY getUser: ' + name))
     return this._db[this.entity].findAll({
       where: { name: name }
     })
   }
-  // getUser (body) {
-  //   debug(('REPOSITORY getUser: ' + JSON.stringify(body)))
-  //   return this._db[this.entity].findAll({
-  //     where: { name: body.name, password: body.password }
-  //   })
-  // }
+
+  // ASSOCIATION_CATEGORIES
+  getCategoriesFromAssociation (body) {
+    debug(('REPOSITORY getCategoriesFromAssociation: ' + JSON.stringify(body)))
+    return this._db[this.entity].findAll({
+      where: { associationId: body.associationId }
+    })
+  }
+
+  getAssociationsFromCategory (body) {
+    debug(('REPOSITORY getCategoriesFromAssociation: ' + JSON.stringify(body)))
+    return this._db[this.entity].findAll({
+      where: { categoryId: body.categoryId }
+    })
+  }
 }
 
 module.exports = BaseRepository

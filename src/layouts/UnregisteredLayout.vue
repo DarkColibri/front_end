@@ -3,7 +3,7 @@
     <q-header elevated>
       <q-toolbar>
         <!-- Desplegable -->
-        <q-btn v-if="userState != null"
+        <q-btn v-if="userLogin != null"
           flat
           dense
           round
@@ -22,7 +22,7 @@
         <q-toolbar-title class="absolute-center">**** {{title}} ****</q-toolbar-title>
         <!-- Botón Login -->
         <q-btn
-          v-if="userState === null"
+          v-if="userLogin === null"
           to="/login"
           class="absolute-right q-pr-sm"
           icon="account_circle"
@@ -99,7 +99,7 @@ export default {
     EssentialLink
   },
   computed: {
-    ...Vuex.mapState('users', ['userState']),
+    ...Vuex.mapState('users', ['userLogin']),
     title () {
       // console.log(this.$route)
       const currentPath = this.$route.fullPath
@@ -124,10 +124,10 @@ export default {
     try {
       console.log('MainLayout Created .................. ' + this.$route.fullPath)
       await this.UserLogin(this.$route.fullPath)
-      console.log('MainLayout UserState:')
-      console.log(this.userState)
+      console.log('MainLayout userLogin:')
+      console.log(this.userLogin)
 
-      if (this.userState === null) {
+      if (this.userLogin === null) {
         console.log('Usuario NULL!!')
         if (this.$route.fullPath !== '/' && this.$route.fullPath !== '/login') {
           console.log('Go to ... /login')
@@ -144,20 +144,20 @@ export default {
   }
   // beforeMount () {
   //   console.log('BeforeMount .................')
-  //   console.log(this.userState)
+  //   console.log(this.userLogin)
   //   console.log('BeforeMount .................')
   // },
   // mounted () {
   //   console.log('mounted .................')
-  //   console.log(this.userState)
+  //   console.log(this.userLogin)
   //   console.log('mounted .................')
   //   // try {
   //   //   console.log('MOUNTED MainLayout : ' + this.$route.fullPath)
   //   //   await this.UserLogin(this.$route.fullPath)
   //   //   console.log('USER')
-  //   //   console.log(this.userState)
+  //   //   console.log(this.userLogin)
 
-  //   //   if (this.userState === null) {
+  //   //   if (this.userLogin === null) {
   //   //     console.log('Usuario NULL.')
   //   //     if (this.$route.fullPath !== '/' && this.$route.fullPath !== '/login') {
   //   //       console.log('Go to ... /login')
@@ -173,22 +173,22 @@ export default {
   // },
   // beforeUpdate () {
   //   console.log('beforeUpdate .................')
-  //   console.log(this.userState)
+  //   console.log(this.userLogin)
   //   console.log('beforeUpdate .................')
   // },
   // updated () {
   //   console.log('updated .................')
-  //   console.log(this.userState)
+  //   console.log(this.userLogin)
   //   console.log('updated .................')
   // },
   // beforeDestroy () {
   //   console.log('updated .................')
-  //   console.log(this.userState)
+  //   console.log(this.userLogin)
   //   console.log('updated .................')
   // },
   // destroyed () {
   //   console.log('updated .................')
-  //   console.log(this.userState)
+  //   console.log(this.userLogin)
   //   console.log('updated .................')
   // }
 

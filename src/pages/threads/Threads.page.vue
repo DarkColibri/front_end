@@ -1,8 +1,8 @@
 <template>
   <div class="q-pa-md q-gutter-sm">
-  <q-chip size="25px" icon="bookmark">
-  Temas
-  </q-chip>
+  <q-btn to="threads/add/0" align="left" icon-right="forum" class="btn-fixed-width" color="primary" label="Crear" />
+  <!-- <router-link :to="{ path:'/threads/add/' + thread.id, params: { id: 123 }}">Home</router-link> -->
+  <!-- <router-link to="/threads/add/2">Register</router-link> -->
   <thread
     v-for="(thread, index) in allThreadsState "
       :key="index"
@@ -35,7 +35,7 @@ export default {
   },
   created () {
     try {
-      console.log('CREATED THREADS')
+      // console.log('CREATED THREADS')
       this.getAllThreads()
     } catch (error) {
       console.log(error)

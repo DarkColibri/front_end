@@ -100,8 +100,8 @@
       <!-- <q-btn label="Reset" type="reset" color="primary" flat class="q-ml-sm" /> -->
     </div>
 
-    <q-input v-if="userState != null" rounded standout v-model="userState.username" label="Rounded standout" />
-    <q-input v-if="userState != null" rounded standout v-model="userState.email" label="Rounded standout" />
+    <q-input v-if="userLogin != null" rounded standout v-model="userLogin.username" label="Rounded standout" />
+    <q-input v-if="userLogin != null" rounded standout v-model="userLogin.email" label="Rounded standout" />
   </q-form>
   <!-- </form> -->
 </template>
@@ -139,7 +139,7 @@ export default {
     }
   },
   computed: {
-    ...mapState('users', ['userState'])
+    ...mapState('users', ['userLogin'])
   },
   // validations: {
   //   user: {
@@ -214,7 +214,7 @@ export default {
       //       color: 'green-4',
       //       textColor: 'white',
       //       icon: 'cloud_done',
-      //       message: 'User ' + this.userState.name + ' created.'
+      //       message: 'User ' + this.userLogin.name + ' created.'
       //       // message: 'User created.'
       //     })
       //   } else {
@@ -225,13 +225,13 @@ export default {
       //     console.log('===============================================')
       //     console.log(result)
       //     console.log('===============================================')
-      //     console.log(this.userState)
-      //     console.log('this.userState ' + this.userState.username)
+      //     console.log(this.userLogin)
+      //     console.log('this.userLogin ' + this.userLogin.username)
       //     this.$q.notify({
       //       color: 'green-4',
       //       textColor: 'white',
       //       icon: 'cloud_done',
-      //       message: 'User ' + this.userState.username + ' logged.'
+      //       message: 'User ' + this.userLogin.username + ' logged.'
       //       // message: 'User logged.'
       //     })
       //     // this.$router.push('/users')

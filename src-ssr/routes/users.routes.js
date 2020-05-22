@@ -31,10 +31,10 @@ router
 // }))
 
 router.get('/', (req, res) => {
-  debug('GET ALL')
+  // debug('GET ALL')
   repository.findAll()
     .then(result => {
-      debug('[OK] ' + JSON.stringify(result))
+      // debug('[OK] ' + JSON.stringify(result))
       res.json(result)
     })
     .catch(err => {
@@ -44,12 +44,12 @@ router.get('/', (req, res) => {
 })
 
 router.get('/getUserLogin', (req, res) => {
-  debug('ROUTER DE TOA LA VIDA >> getUserLogin')
+  // debug('ROUTER DE TOA LA VIDA >> getUserLogin')
   if (isLoggedIn(req, res)) {
-    debug(req.user)
+    // debug(req.user)
     res.send(req.user)
   } else {
-    debug('Usuario no logeado.')
+    // debug('Usuario no logeado.')
     res.status(401).send()
     // res.send()
   }
@@ -57,10 +57,10 @@ router.get('/getUserLogin', (req, res) => {
 
 router.get('/:id', (req, res) => {
   const { id } = req.params
-  debug('GET ' + id)
+  // debug('GET ' + id)
   repository.findOne(id)
     .then(result => {
-      debug('[OK] ' + JSON.stringify(result))
+      // debug('[OK] ' + JSON.stringify(result))
       res.json(result)
     })
     .catch(err => {
@@ -72,10 +72,10 @@ router.get('/:id', (req, res) => {
 router.get('/:name/:password', (req, res) => {
   // const { id } = req.params
   // debug(req)
-  debug(req.method + req.url + ' ' + JSON.stringify(req.params))
+  // debug(req.method + req.url + ' ' + JSON.stringify(req.params))
   repository.getUser(req.params)
     .then(result => {
-      debug('[OK] ' + JSON.stringify(result[0]))
+      // debug('[OK] ' + JSON.stringify(result[0]))
       res.json(result[0])
     })
     .catch(err => {
@@ -88,11 +88,11 @@ router.get('/:name/:password', (req, res) => {
 router.post('/', (req, res) => {
   const { body } = req
   // console.log(passport)
-  debug('POST ' + JSON.stringify(body))
+  // debug('POST ' + JSON.stringify(body))
   // GUARDAMOS USUARIO
   repository.create(body)
     .then(result => {
-      debug('[OK] ' + JSON.stringify(result))
+      // debug('[OK] ' + JSON.stringify(result))
       res.status(201).json(result)
     })
     .catch(err => {
@@ -104,10 +104,10 @@ router.post('/', (req, res) => {
 router.put('/:id', (req, res) => {
   const { body } = req
   const { id } = req.params
-  debug('PUT ' + id + ' - ' + JSON.stringify(body))
+  // debug('PUT ' + id + ' - ' + JSON.stringify(body))
   repository.update(id, body)
     .then(result => {
-      debug('[OK] ' + JSON.stringify(result))
+      // debug('[OK] ' + JSON.stringify(result))
       res.status(201).json(result)
     })
     .catch(err => {
@@ -118,10 +118,10 @@ router.put('/:id', (req, res) => {
 
 router.delete('/:id', (req, res) => {
   const { id } = req.params
-  debug('DELETE: ' + id)
+  // debug('DELETE: ' + id)
   repository.delete(id)
     .then(result => {
-      debug('[OK] ' + result)
+      // debug('[OK] ' + result)
       res.status(204).json(result)
     })
     .catch(err => {

@@ -5,7 +5,8 @@ export function getCategoryMutation (state, data) {
 }
 
 export function getAllCategoriesMutation (state, data) {
-  // console.log('getAllThreadMutation')
+  // console.log('getAllCategoriesMutation')
+  // console.log(data)
   state.allCategoriesState = data
   // console.log('STATE.threadsState ' + state.threadsState)
 }

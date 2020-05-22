@@ -7,9 +7,19 @@ const routes: RouteConfig[] = [
     children: [{ path: '', component: () => import('pages/Index.vue') }]
   },
   {
+    path: '/associations',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [{ path: '', component: () => import('pages/associations/Associations.page.vue') }]
+  },
+  {
     path: '/threads',
     component: () => import('layouts/MainLayout.vue'),
     children: [{ path: '', component: () => import('pages/threads/Threads.page.vue') }]
+  },
+  {
+    path: '/threads/add/:id',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [{ path: '', component: () => import('pages/threads/Threads.Add.page.vue') }]
   },
   {
     path: '/posts/:id',

@@ -1,4 +1,4 @@
-const debug = require('debug')('src-ssr:routes:categories')
+const debug = require('debug')('src-ssr:routes:associations')
 const express = require('express')
 
 const db = require('../db/models')
@@ -7,7 +7,7 @@ const cors = require('cors')
 const compression = require('compression')
 
 const Repository = require('../repositoy/base.repository')
-const repository = new Repository(db, 'categories')
+const repository = new Repository(db, 'associationcategories')
 
 const router = express.Router()
 
@@ -17,7 +17,7 @@ router
   .use(compression())
 
 router.get('/', (req, res) => {
-  debug('GET')
+  debug('GET ALL')
   repository.findAll()
     .then(result => {
       debug(JSON.stringify(result))
@@ -29,8 +29,7 @@ router.get('/', (req, res) => {
 })
 
 router.get('/:id', (req, res) => {
-  debug('GET ' + req.params)
-  debug('ROUTER GET')
+  debug('GET /' + req.params)
   const { id } = req.params
   repository.findOne(id)
     .then(result => {
@@ -38,6 +37,38 @@ router.get('/:id', (req, res) => {
       res.json(result)
     })
     .catch(err => {
+      res.status(404).json({ message: err })
+    })
+})
+
+// CATEGORIÍAS de una asociacion
+router.get('/category/:associationId', (req, res) => {
+  // const { id } = req.params
+  // debug(req)
+  // debug(req.method + req.url + ' ' + JSON.stringify(req.params))
+  repository.getCategoriesFromAssociation(req.params)
+    .then(result => {
+      // debug('[OK] ' + JSON.stringify(result[0]))
+      res.json(result)
+    })
+    .catch(err => {
+      console.log(err)
+      res.status(404).json({ message: err })
+    })
+})
+
+// ASOCIACIONES a de una categoria
+router.get('/associations/:categoryId', (req, res) => {
+  // const { id } = req.params
+  // debug(req)
+  // debug(req.method + req.url + ' ' + JSON.stringify(req.params))
+  repository.getAssociationsFromCategory(req.params)
+    .then(result => {
+      // debug('[OK] ' + JSON.stringify(result[0]))
+      res.json(result[0])
+    })
+    .catch(err => {
+      console.log(err)
       res.status(404).json({ message: err })
     })
 })

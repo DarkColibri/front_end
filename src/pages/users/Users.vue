@@ -40,53 +40,53 @@ export default {
     }
   },
   computed: {
-    ...mapState('users', ['allUsersState', 'userState'])
+    ...mapState('users', ['allUsersState', 'userLogin'])
   },
   methods: {
     ...mapActions('users', ['getAllUsers'])
   },
   // beforeCreate () {
   //   console.log('User BeforCreated .................')
-  //   console.log(this.userState)
+  //   console.log(this.userLogin)
   //   console.log('User BeforCreated .................')
   // },
   async created () {
     console.log('User Created ...................')
-    console.log(this.userState)
+    console.log(this.userLogin)
     await this.getAllUsers()
     console.log('User Created ...................')
   }
   // beforeMount () {
   //   console.log('User BeforeMount .................')
-  //   console.log(this.userState)
+  //   console.log(this.userLogin)
   //   console.log('User BeforeMount .................')
   // },
   // mounted () {
   //   console.log('User Mounted .................')
-  //   console.log(this.userState)
+  //   console.log(this.userLogin)
   //   console.log('User Mounted .................')
   // },
   // async beforeUpdate () {
   //   console.log('User beforeUpdate .................')
-  //   console.log(this.userState)
-  //   // if (this.userState !== null) {
+  //   console.log(this.userLogin)
+  //   // if (this.userLogin !== null) {
   //   await this.getAllUsers()
   //   // }
   //   console.log('User beforeUpdate .................')
   // },
   // updated () {
   //   console.log('User updated .................')
-  //   console.log(this.userState)
+  //   console.log(this.userLogin)
   //   console.log('User updated .................')
   // },
   // beforeDestroy () {
   //   console.log('User updated .................')
-  //   console.log(this.userState)
+  //   console.log(this.userLogin)
   //   console.log('User updated .................')
   // },
   // destroyed () {
   //   console.log('User updated .................')
-  //   console.log(this.userState)
+  //   console.log(this.userLogin)
   //   console.log('User updated .................')
   // }
 

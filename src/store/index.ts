@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 
 // import example from './module-example'
 // import exampleState from './module-example/state'
+import associations from './associations'
 import categories from './categories'
 import threads from './threads'
 import posts from './posts'
@@ -24,6 +25,7 @@ export default store(function ({ Vue }) {
 
   const Store = new Vuex.Store({
     modules: {
+      associations,
       categories,
       threads,
       posts,

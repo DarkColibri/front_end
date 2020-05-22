@@ -1,4 +1,4 @@
-const debug = require('debug')('src-ssr:routes:threads')
+const debug = require('debug')('src-ssr:routes:associations')
 const express = require('express')
 
 const db = require('../db/models')
@@ -7,7 +7,7 @@ const cors = require('cors')
 const compression = require('compression')
 
 const Repository = require('../repositoy/base.repository')
-const repository = new Repository(db, 'threads')
+const repository = new Repository(db, 'associations')
 
 const router = express.Router()
 
@@ -17,10 +17,10 @@ router
   .use(compression())
 
 router.get('/', (req, res) => {
-  // debug('GET')
+  debug('GET ALL')
   repository.findAll()
     .then(result => {
-      // console.log(JSON.stringify(result))
+      debug(JSON.stringify(result))
       res.json(result)
     })
     .catch(err => {
@@ -29,12 +29,11 @@ router.get('/', (req, res) => {
 })
 
 router.get('/:id', (req, res) => {
-  // debug('GET ' + req.params)
-  // console.log('ROUTER GET')
+  debug('GET /' + req.params)
   const { id } = req.params
   repository.findOne(id)
     .then(result => {
-      // console.log(JSON.stringify(result))
+      // debug(JSON.stringify(result))
       res.json(result)
     })
     .catch(err => {
@@ -42,26 +41,29 @@ router.get('/:id', (req, res) => {
     })
 })
 
+// CREATE
 router.post('/', (req, res) => {
   const { body } = req
-  console.log('BODY ' + JSON.stringify(body))
+  debug('POST ' + JSON.stringify(body))
   repository.create(body)
     .then(result => {
-      // console.log('RESULT: ' + JSON.stringify(result))
+      debug('POST Request ... [OK]: ' + JSON.stringify(result))
       res.status(201).json(result)
     })
     .catch(err => {
+      debug('Error POST: ' + err)
       res.status(404).json({ message: err })
     })
 })
 
+// UPDATE
 router.put('/:id', (req, res) => {
   const { body } = req
   const { id } = req.params
-  console.log('PUT BODY ' + JSON.stringify(body))
+  debug('BODY ' + JSON.stringify(id, body))
   repository.update(id, body)
     .then(result => {
-      // console.log('RESULT: ' + JSON.stringify(result))
+      // debug('RESULT: ' + JSON.stringify(result))
       res.status(201).json(result)
       // res.json(result)
     })
@@ -70,12 +72,13 @@ router.put('/:id', (req, res) => {
     })
 })
 
+// DELETE
 router.delete('/:id', (req, res) => {
   const { id } = req.params
-  // console.log('DELETE: ' + id)
+  // debug('DELETE: ' + id)
   repository.delete(id)
     .then(result => {
-      // console.log('RESULT: ' + JSON.stringify(result))
+      // debug('DELETE Request ... [OK]: ' + JSON.stringify(result))
       res.status(204).json(result)
     })
     .catch(err => {
