@@ -137,16 +137,17 @@ export default {
   computed: {
     ...Vuex.mapState('users', ['userLogin']),
     title () {
-      // console.log(this.$route)
+      // console.log('Computed Main Layout')
       const currentPath = this.$route.fullPath
-      console.log(currentPath)
+      // console.log(currentPath)
       if (currentPath === '/chat') return 'Chat'
-      else if (currentPath === '/auth') return 'Loguin'
+      else if (currentPath === '/auth') return 'Login'
       else if (currentPath === '/threads') return 'Foros'
-      else if (currentPath === '/posts/') return 'Posts'
+      else if (currentPath.includes('/threads/add')) return 'Nuevo Foro'
+      else if (currentPath.includes('/posts/')) return 'Posts'
+      else if (currentPath.includes('/associations')) return 'Asociaciones'
       else if (currentPath === '/users') return 'Usuarios'
       else if (currentPath === '/profile') return 'Perfil'
-      else if (currentPath === '/threads/add') return 'Nuevo Foro'
       return 'Delicius Garden'
     }
   },
@@ -161,10 +162,10 @@ export default {
   // },
   async created () {
     try {
-      // console.log('MainLayout Created .................. ' + this.$route.fullPath)
+      // console.log('CREATED MainLayout [' + this.$route.fullPath + ']')
       await this.UserLogin(this.$route.fullPath)
       // console.log('MainLayout userLogin:')
-      console.log(this.userLogin)
+      // console.log('Usuario logueado: ' + JSON.stringify(this.userLogin))
 
       if (this.userLogin === null) {
         // console.log('Usuario NULL!!')
@@ -174,12 +175,14 @@ export default {
           // console.log('>>>>>>>>>>>>>')
         }
       }
+      // console.log('CREATED MainLayout. Salimos OK.')
     } catch (err) {
       console.error('ERROR MainLayout')
       console.log(err)
+      console.log('CREATED MainLayout. Salimos KO.')
     }
     // console.log('Go to ... ' + this.$route.fullPath)
-    // console.log('MainLayout Created ........')
+    // console.log('CREATED MainLayout [ESTO SIEMPRE SALE]')
   }
   // beforeMount () {
   //   console.log('BeforeMount .................')

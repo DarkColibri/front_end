@@ -1,7 +1,8 @@
 //  Variables & Objects of store
 export default function () {
   return {
-    association: {},
-    allAssociations: []
+    association: null,
+    categories: null,
+    allAssociations: null
   }
 }

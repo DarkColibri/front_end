@@ -10,13 +10,14 @@ export async function getAssociation ({ commit }, id) {
   } catch (error) {
     console.error(error.data)
   }
+  console.log('ACCTION getAssociation. Salimos.')
 }
 
 export async function getAllAssociations ({ commit }) {
-  console.log('ACCTION getAllAssociations - ' + url)
+  // console.log('ACCTION getAllAssociations - ' + url)
   try {
     const response = await axios.get(url)
-    console.log(response.data)
+    // console.log('Asociacionciones: ' + JSON.stringify(response.data))
     commit('getAllAssociationsMutation', response.data)
   } catch (error) {
     console.error(error.data)
@@ -80,7 +81,8 @@ export async function getCategoriesFromAssociation ({ commit }, id) {
   console.log('ACCTION getCategoriesFromAssociation - ' + url)
   try {
     const response = await axios.get('http://localhost:8080/api/asocat/category/' + id)
-    console.log(JSON.stringify(response.data))
+    console.log('ACCTION Request getCategoriesFromAssociation' + JSON.stringify(response.data))
+    // commit('getAllCategoriesMutation', response.data)
     return response.data
   } catch (error) {
     console.error(error.data)

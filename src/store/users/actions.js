@@ -83,23 +83,19 @@ export async function deleteUser ({ commit }, id) {
 // UTILIZAR USUARIO_LOGUEADO
 export async function UserLogin ({ commit }, fullPath) {
   try {
-    // console.log('LOGIN: ' + JSON.stringify(user))
-    // console.log('Comprobando path ' + fullPath)
-    // console.log('ACTINON LOGIN ' + fullPath)
-    // GET user
-    // const response = await axios.get('http://localhost:8080/api/users/getUserLogin')
+    // console.log('ACTINON UserLogin - http://localhost:8080/api/users/getUserLogin')
+    // GET USER LOGIN
     await axios.get('http://localhost:8080/api/users/getUserLogin')
       .then(response => {
-        // console.log(response.data)
+        // // console.log(response.data)
         commit('getUserMUT', response.data)
-        // console.log('1 - Despues del commit.')
-        // return response.data
         if (fullPath === '/login') {
           this.$router.push('/profile')
         }
+        // console.log('ACTION UserLogin. Salimos OK.')
       })
       .catch(err => {
-        console.error('Error al autenticar.' + err)
+        console.error('Error al autenticar. ' + err)
         commit('getUserMUT', null)
         console.error('2 - Despues del commit. Realizamos return null.')
         if (fullPath === '/' || fullPath === '/login') {
@@ -110,16 +106,16 @@ export async function UserLogin ({ commit }, fullPath) {
         } else {
           this.$router.push('/login')
         }
+        // console.log('ACTION UserLogin. Salimos KO.')
       })
-    // console.log('Salimos del Action.')
-    // this.$router.push(fullPath)
-    // commit('getUserMUT', null)
   } catch (error) {
     console.error('ERROR en ' + fullPath)
     commit('getUserMUT', null)
     console.error('3 - Despues del commit. Realizamos return null')
+    console.log('ACTION UserLogin. Salimos CATCH.')
     // return null
   }
+  // console.log('ACTION UserLogin [ESTO SIEMPRE SALE]')
 }
 
 export async function UserLogout ({ commit }) {
@@ -139,7 +135,7 @@ export async function UserLogout ({ commit }) {
 }
 
 export async function getNameUser ({ commit }, id) {
-  console.log('ACCTION - http://localhost:8080/api/threads/')
+  // console.log('ACCTION - http://localhost:8080/api/threads/')
   try {
     // console.log('getNameUser∫')
     const response = await axios.get(URL + id)

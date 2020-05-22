@@ -53,14 +53,14 @@ const timeagoInstance = require('timeago.js')
 export default {
   name: 'Associations',
   props: ['id', 'name', 'description', 'link'],
-  computed: {
-    ...Vuex.mapState('users', ['userLogin'])
-  },
   data () {
     return {
-      user: '',
-      categories: []
+      categories: null
     }
+  },
+  computed: {
+    ...Vuex.mapState('users', ['userLogin'])
+    // ...Vuex.mapState('associations', ['categories'])
   },
   methods: {
     ...Vuex.mapActions('categories', ['getNameCategory']),
@@ -72,13 +72,16 @@ export default {
     }
   },
   async created () {
+    console.log('CREATED AssoComponent. Id = ' + this.id)
     this.categories = await this.getCategoriesFromAssociation(this.id)
+    console.log('CREATED Categories = ' + JSON.stringify(this.categories))
     for (let j = 0; j < this.categories.length; j += 1) {
       // console.log(this.allCategoriesState[j])
       this.categories[j].associationName = await this.getNameCategory(this.categories[j].categoryId)
       console.log(this.categories[j].associationName)
     }
     console.log('Categorias: ' + JSON.stringify(this.categories))
+    console.log('EXIT!!!!  CREATED AssoComponent. Id = ' + this.id)
   }
 }
 </script>

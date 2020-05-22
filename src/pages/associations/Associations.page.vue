@@ -26,17 +26,17 @@ export default {
     ...Vuex.mapState('associations', ['allAssociations', 'association'])
   },
   methods: {
-    // ...Vuex.mapActions('threads', ['getAllThreads']),
     ...Vuex.mapActions('associations', ['getAllAssociations', 'getAssociation'])
   },
   created () {
     try {
-      // console.log('CREATED THREADS')
-      // this.getAllThreads()
       this.getAllAssociations()
+      // console.log('CREATED Associations. Salimos OK.')
     } catch (error) {
       console.log(error)
+      console.log('CREATED Associations. Salimos KO.')
     }
+    // console.log('CREATED Associations [ESTO SIEMPRE SALE]')
   }
 }
 </script>
