@@ -12,6 +12,16 @@ const routes: RouteConfig[] = [
     children: [{ path: '', component: () => import('pages/associations/Associations.page.vue') }]
   },
   {
+    path: '/associations/add',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [{ path: '', component: () => import('pages/associations/Associations.Add.page.vue') }]
+  },
+  {
+    path: '/associations/:id',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [{ path: '', component: () => import('pages/associations/Associations.Add.page.vue') }]
+  },
+  {
     path: '/threads',
     component: () => import('layouts/MainLayout.vue'),
     children: [{ path: '', component: () => import('pages/threads/Threads.page.vue') }]

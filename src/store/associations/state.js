@@ -2,7 +2,7 @@
 export default function () {
   return {
     association: null,
-    categories: null,
+    // categories: null,
     allAssociations: null
   }
 }

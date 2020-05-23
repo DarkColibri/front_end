@@ -2,32 +2,28 @@
   <div>
     <q-list>
       <q-card class="bg-grey-3" flat bordered>
+          <div class="row">
+            <div class="col q-pa-md">Categoría: {{category}}</div>
+          </div>
+          <q-separator />
+          <q-item clickable tag="a" :href="'/posts/' + id" >
+            <q-card-section horizontal>
+              <div class="q-pa-md">
+                <div class="row text-h5 q-mt-sm q-mb-xs">{{subject}}</div>
+                <div class="row text-caption text-grey">{{description}}</div>
+              </div>
+            </q-card-section>
+          </q-item>
+          <q-separator />
 
-        <div class="row">
-          <div class="col q-pa-md">Categoría: {{category}}</div>
-        </div>
-        <q-separator />
-
-        <router-link :to="'/posts/' + id">
           <q-card-section horizontal>
             <div class="q-pa-md">
-              <div class="row text-h5 q-mt-sm q-mb-xs">{{subject}}</div>
-              <div class="row text-caption text-grey">{{description}}</div>
+              <div class="text-subtitle2">User:  {{user}}</div>
+            </div>
+            <div class="q-pa-md absolute-right">
+              <div class="text-subtitle2">Created at {{date}}</div>
             </div>
           </q-card-section>
-        </router-link>
-
-        <q-separator />
-
-        <q-card-section horizontal>
-          <div class="q-pa-md">
-            <div class="text-subtitle2">User:  {{user}}</div>
-          </div>
-          <div class="q-pa-md absolute-right">
-            <div class="text-subtitle2">Created at {{date}}</div>
-          </div>
-        </q-card-section>
-
         <div v-if="userLogin.roleId === 1">
           <q-separator />
           <div class="row">

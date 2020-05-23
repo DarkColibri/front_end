@@ -7,7 +7,7 @@
         <div class="row">
           <div v-for="category in categories"
             :key="category.id"
-            class="col q-pa-md">-{{category.associationName}}</div>
+            class="col q-pa-md">- {{category.associationName}}</div>
         </div>
         <q-separator />
         <!-- NOMBRE y DESCRIPCION -->
@@ -33,10 +33,10 @@
           <q-separator />
           <div class="row">
             <div class="col">
-              <q-btn @click="modificar()" color="primary" flat>Modificar</q-btn>
+              <q-btn @click="modifyAsso()" color="primary" flat>Modificar</q-btn>
             </div>
             <div class="col">
-              <q-btn @click="eliminar()" color="primary" flat>Borrar</q-btn>
+              <q-btn @click="deleteAsso()" color="primary" flat>Borrar</q-btn>
             </div>
           </div>
         </div>
@@ -64,11 +64,14 @@ export default {
   },
   methods: {
     ...Vuex.mapActions('categories', ['getNameCategory']),
-    ...Vuex.mapActions('associations', ['getCategoriesFromAssociation']),
-    modificar () {
+    ...Vuex.mapActions('associations', ['getCategoriesFromAssociation', 'deleteAssociation']),
+    modifyAsso () {
       console.log('MODIFICAMOS!!!!!!')
       this.$router.push('/associations/' + this.id)
-      console.log('modificado de')
+    },
+    deleteAsso () {
+      this.deleteAssociation(this.id)
+      this.$router.push('/associations')
     }
   },
   async created () {

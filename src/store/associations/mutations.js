@@ -11,9 +11,9 @@ export function getAllAssociationsMutation (state, data) {
   // console.log('STATE.allAssociations ' + state.allAssociations)
 }
 
-export function getAllCategoriesMutation (state, data) {
-  // console.log('COMMIT!!!  getAllCategoriesMutation')
-  // console.log(data)
-  state.categories = data
-  console.log('COMMIT!!! categories =  ' + JSON.stringify(state.categories))
-}
+// export function getAllCategoriesMutation (state, data) {
+//   // console.log('COMMIT!!!  getAllCategoriesMutation')
+//   // console.log(data)
+//   state.categories = data
+//   console.log('COMMIT!!! categories =  ' + JSON.stringify(state.categories))
+// }
