@@ -26,6 +26,7 @@ Para ralizar **merge** de las ramas, primero hay que estar en la rama **MASTER**
 ```bash
 $ git checkout master
 $ git merge [nombre_rama]
+$ git push
 ```
 
 **Eliminar** rama:
