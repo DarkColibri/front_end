@@ -31,7 +31,7 @@ $ git push
 
 **Eliminar** rama:
 ```bash
-git -d [nombre_rama]
+git branch -d [nombre_rama]
 ```
 
 Configuración del usuario para que no nos lo pida cada  vez que hacemos commit.
