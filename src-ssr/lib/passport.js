@@ -36,7 +36,7 @@ passport.use(
           done(null, false)
         }
       } else {
-        return done(null, false, req.flash('message', 'The Username does not exists.'))
+        return done(null, false)
       }
     }
   )
@@ -81,14 +81,5 @@ passport.serializeUser((user, done) => {
 passport.deserializeUser(async (id, done) => {
   // debug('DesSerialize user. BUSCAMOS EL USUARIO EN LA BD.')
   const rows = await repository.findOne(id)
-  const user = {
-    id: rows.id,
-    name: rows.name,
-    password: rows.password,
-    age: rows.age,
-    email: rows.email,
-    roleId: rows.roleId
-  }
-  // debug('User deserializado: ' + JSON.stringify(user))
-  done(null, user)
+  done(null, rows)
 })

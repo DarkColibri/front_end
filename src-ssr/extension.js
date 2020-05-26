@@ -21,7 +21,14 @@ module.exports.extendApp = function ({ app, ssr }) {
   const bodyParser = require('body-parser')
 
   // CONFIG database
-  const { database } = require('./db/config/keys')
+  debug('[CONFIG DB]:')
+  const db = require('./db')
+
+  debug('API DE PRUEBA!!! ')
+  const api = require('./api')
+
+  debug('MIDDLEWARES')
+  const { errorHandler } = require('./components/middlewares')
 
   // Intializations
   require('./lib/passport')
@@ -36,8 +43,10 @@ module.exports.extendApp = function ({ app, ssr }) {
   app.use(bodyParser.urlencoded({ extended: false }))
   app.use(bodyParser.json())
 
+  const { database } = require('./db/config/keys')
   app.use(session({
-    secret: 'faztmysqlnodemysql',
+    key: 'session_cookie_dg',
+    secret: 'session_cookie_secret_dg',
     resave: false,
     saveUninitialized: false,
     store: new MySQLStore(database)
@@ -46,22 +55,29 @@ module.exports.extendApp = function ({ app, ssr }) {
   app.use(passport.initialize())
   app.use(passport.session())
 
-  // Global variables
-  app.use((req, res, next) => {
-    // app.locals.user = req.user
-    next()
-  })
+  // // Global variables
+  // app.use((req, res, next) => {
+  //   // app.locals.user = req.user
+  //   next()
+  // })
 
   // // ROUTES
+  const post = require('./api/posts/posts.api')
+  app.use('/api/posts', post)
+
   app.use(require('./routes/auth.routes'))
   app.use('/api/asocat', require('./routes/associationcategories.router'))
   app.use('/api/associations', require('./routes/associations.router'))
   app.use('/api/categories', require('./routes/categories.router'))
-  app.use('/api/posts', require('./routes/posts.routes'))
+  // app.use('/api/posts', require('./routes/posts.routes'))
   app.use('/api/threads', require('./routes/threads.routes'))
   app.use('/api/users', require('./routes/users.routes'))
 
+  // debug('Cargamos API Usuarios')
+  // app.use('/prueba', api)
+  app.use(errorHandler)
   // // SINCRONIZAMOS BD
+
   // await db.sequelize.sync({ force: false })
   //   .then(() => {
   //     console.log('BD Conected.')

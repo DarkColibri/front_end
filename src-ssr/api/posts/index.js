@@ -1,4 +1,4 @@
-const Model = require('./posts/model')
+const Model = require('./model')
 const debug = require('debug')('src-ssr:api:posts:index')
 
 const id = 'resource' // since res.user is set by passport

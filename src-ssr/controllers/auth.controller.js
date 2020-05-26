@@ -5,12 +5,12 @@ const passport = require('passport')
 // LOGIN
 authCtrl.signIn = passport.authenticate('local.signin', {
   successRedirect: '/profile',
-  failureRedirect: '/signin'
+  failureRedirect: '/login'
 })
 // SIGNUP
 authCtrl.signUp = passport.authenticate('local.signup', {
   successRedirect: '/profile',
-  failureRedirect: '/signup'
+  failureRedirect: '/login'
 })
 
 // LOGOUT

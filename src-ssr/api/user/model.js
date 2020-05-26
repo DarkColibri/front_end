@@ -1,4 +1,4 @@
-const debug = require('debug')('src-ssr:api:user:model')
+const debug = require('debug')('src-ssr:api:User:model')
 const bcrypt = require('bcrypt')
 const Sequelize = require('sequelize')
 const sequelize = require('../../db')
@@ -49,12 +49,12 @@ class User extends Model {
     return hash
   }
 
-  static async hashPassword (user) {
+  static async hashPassword (User) {
     debug('hashPassword()')
-    debug(user)
-    if (user.changed('password')) {
+    debug(User)
+    if (User.changed('password')) {
       debug('Asignamos el password al usuario.')
-      user.set('password', await this.getHash(user.password))
+      User.set('password', await this.getHash(User.password))
     }
   }
 

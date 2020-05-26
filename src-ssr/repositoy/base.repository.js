@@ -1,5 +1,9 @@
 const debug = require('debug')('src-src:api:repository:base')
 
+// const db = require('../db/models')
+// const Repository = require('../repositoy/base.repository')
+// const repository = new Repository(db, 'posts')
+
 class BaseRepository {
   constructor (db, entity) {
     this._db = db

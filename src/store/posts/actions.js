@@ -4,11 +4,13 @@ import axios from 'axios'
 // const Repository = require('../../../src-ssr/api/repositoy/base.repository')
 // const repository = new Repository(db, 'posts')
 
-export async function getAllPosts ({ commit }, id) {
-  console.log('ACTION GET ALL POSTS id: ' + id)
+const URL = 'http://localhost:8080/prueba/posts'
+
+export async function getAllPosts ({ commit }) {
+  console.log('ACTION GET ALL POSTS')
   try {
-    const response = await axios.get('http://localhost:8080/api/posts/threads/' + id)
-    // console.log('[AXIOS RESPONSE]' + JSON.stringify(response.data))
+    const response = await axios.get(URL)
+    console.log('[API RESPONSE]' + JSON.stringify(response.data))
     commit('getAllPostsMutation', response.data)
   } catch (error) {
     console.log(error)
