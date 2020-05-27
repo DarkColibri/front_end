@@ -30,17 +30,17 @@ function resourceRoute (routeId, resource) {
   }
 
   function mount (method, url, fn) {
-    console.log('================================================')
-    console.log(method)
-    console.log(url)
-    console.log(fn)
-    console.log(routeId)
+    // console.log('================================================')
+    // console.log(method)
+    // console.log(url)
+    // console.log(fn)
+    // console.log(routeId)
 
     if (!resource[fn]) return null
 
     const responder = resource.respond || defaultRespond
     console.log(`[${routeId}-${fn}]`)
-    console.log('************************************************')
+    // console.log('************************************************')
 
     return router[method](
       url,
@@ -52,24 +52,22 @@ function resourceRoute (routeId, resource) {
   }
 
   mount('get', '/', 'index')
+  mount('get', '/paranoid', 'indexForce')
+  mount('get', `/paranoid/:${idParam}`, 'loadForce')
+  mount('get', `/:${idParam}`, 'load')
+  mount('get', `/:${idParam}`, 'load')
   mount('post', '/', 'create')
-  mount('put', '/', 'updateRoot')
-  mount('patch', '/', 'patchRoot')
-  mount('delete', '/', 'destroyRoot')
-
+  mount('put', `/:${idParam}`, 'update')
+  mount('delete', `/paranoid/:${idParam}`, 'destroyForce')
+  mount('delete', `/:${idParam}`, 'destroy')
+  // mount('put', '/', 'updateRoot')
+  // mount('patch', '/', 'patchRoot')
+  // mount('delete', '/', 'destroyRoot')
+  // mount('patch', `/:${idParam}`, 'patch')
   if (resource.subresourcesRoot) {
     [...Object.entries(resource.subresourcesRoot)].forEach(([subresourceName, subresource]) =>
       router.use(`/${subresourceName}`, resourceRoute(`${routeId}-${subresourceName}`, subresource)))
   }
-
-  mount('get', `/:${idParam}`, 'load')
-  mount('put', `/:${idParam}`, 'update')
-  mount('patch', `/:${idParam}`, 'patch')
-  mount('delete', `/:${idParam}`, 'destroy')
-
-  // POSTS - Posts por threads
-  // http://localhost:8080/api/posts/threads/{id}
-  // mount('get', `/threads/:${idParam}`, 'threads')
 
   if (resource.subresources) {
     [...Object.entries(resource.subresources)].forEach(([subresourceName, subresource]) =>
@@ -78,7 +76,6 @@ function resourceRoute (routeId, resource) {
         resourceRoute(`${routeId}-${subresourceName}`, subresource)
       ))
   }
-  console.log(JSON.stringify(resource))
 
   return router
 }

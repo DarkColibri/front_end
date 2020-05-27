@@ -21,11 +21,11 @@ module.exports.extendApp = function ({ app, ssr }) {
   const bodyParser = require('body-parser')
 
   // CONFIG database
-  debug('[CONFIG DB]:')
-  const db = require('./db')
+  // debug('[CONFIG DB]:')
+  // const db = require('./db')
 
-  debug('API DE PRUEBA!!! ')
-  const api = require('./api')
+  // debug('API DE PRUEBA!!! ')
+  // const api = require('./api')
 
   debug('MIDDLEWARES')
   const { errorHandler } = require('./components/middlewares')
@@ -73,8 +73,6 @@ module.exports.extendApp = function ({ app, ssr }) {
   app.use('/api/threads', require('./routes/threads.routes'))
   app.use('/api/users', require('./routes/users.routes'))
 
-  // debug('Cargamos API Usuarios')
-  // app.use('/prueba', api)
   app.use(errorHandler)
   // // SINCRONIZAMOS BD
 

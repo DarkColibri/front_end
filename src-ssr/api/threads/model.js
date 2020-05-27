@@ -1,4 +1,4 @@
-const debug = require('debug')('src-ssr:api:posts:model')
+const debug = require('debug')('src-ssr:api:threads:model')
 const bcrypt = require('bcrypt')
 const Sequelize = require('sequelize')
 const sequelize = require('../../db')
@@ -6,14 +6,15 @@ const sequelize = require('../../db')
 const { DataTypes, Model } = Sequelize
 
 // eslint-disable-next-line @typescript-eslint/class-name-casing
-class posts extends Model {
+class threads extends Model {
   /**
    * setup model CRUD operation association
    *   createdAt foreignKey creatorId as creator
    *   updatedAt foreignKey updaterId as updater
    *   paranoid  foreignKey deleterId as deleter
    * @param  {Object} model Sequelize source model
-   * @return {void}       setup source model associations with posts model
+   * @return {void}       setup source model associations with threads
+   s model
    */
   static trackModel (model) {
     const {
@@ -46,14 +47,15 @@ class posts extends Model {
   }
 }
 
-module.exports = posts.init(
+module.exports = threads.init(
   {
-    content: DataTypes.STRING,
-    threadId: DataTypes.INTEGER,
+    description: DataTypes.STRING,
+    subject: DataTypes.STRING,
+    categoryId: DataTypes.INTEGER,
     userId: DataTypes.INTEGER,
-    votesUp: DataTypes.INTEGER,
-    votesDown: DataTypes.INTEGER,
-    postRefId: DataTypes.INTEGER
+    replies: DataTypes.INTEGER,
+    visits: DataTypes.INTEGER,
+    views: DataTypes.INTEGER
   },
   {
     sequelize,
@@ -63,3 +65,6 @@ module.exports = posts.init(
     // }
   }
 )
+
+// eslint-disable-next-line @typescript-eslint/unbound-method
+// threads.beforeSave(threads.hashPassword)
