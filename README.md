@@ -82,3 +82,5 @@ See [Configuring quasar.conf.js](https://quasar.dev/quasar-cli/quasar-conf-js).
 No cambie los nombres de estos dos archivos. Sin embargo, puede agregar cualquier archivo adicional que pueda necesitar. Solo tenga en cuenta que si desea una configuración común del servidor web Node para producción y desarrollo, debe agregarlo al archivo /src-ssr/extension.js.
 
 Cuando /src-ssr/extension.js es utilizado por el servidor de desarrollo, se supone que la configuración está lista para ser utilizada por un servidor Express. Así que planifique en consecuencia. Si cambia a otro servidor, es posible que desee desacoplar extension.js del servidor de producción (index.js).
+
+jj
