@@ -2,7 +2,7 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.bulkInsert('associationcategories', [
+    return queryInterface.bulkInsert('assocat', [
       {
         categoryId: 1,
         associationId: 1,
@@ -23,6 +23,6 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete('associationcategories', null, {})
+    return queryInterface.bulkDelete('assocat', null, {})
   }
 }

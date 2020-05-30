@@ -39,7 +39,7 @@ function resourceRoute (routeId, resource) {
     if (!resource[fn]) return null
 
     const responder = resource.respond || defaultRespond
-    console.log(`[${routeId}-${fn}]`)
+    // console.log(`[${routeId}-${fn}]`)
     // console.log('************************************************')
 
     return router[method](

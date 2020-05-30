@@ -9,13 +9,13 @@ module.exports = {
         createdAt: new Date(),
         UpdatedAt: new Date()
       }, {
-        name: 'Profesor',
-        description: 'Este es el rol del usuario profesor. Tiene más pivilegios que un "Alumno".',
+        name: 'Tutor',
+        description: 'Este es el rol del Tutor. Tiene más pivilegios que un "Alumno".',
         createdAt: new Date(),
         UpdatedAt: new Date()
       }, {
-        name: 'Alumno',
-        description: 'Este es el rol de un usuario normal, que es el alumno.',
+        name: 'Usuario',
+        description: 'Este es el rol de un normal',
         createdAt: new Date(),
         UpdatedAt: new Date()
       }], {})

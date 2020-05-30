@@ -4,14 +4,18 @@ import axios from 'axios'
 // const Repository = require('../../../src-ssr/api/repositoy/base.repository')
 // const repository = new Repository(db, 'posts')
 
-const URL = 'http://localhost:8080/prueba/posts'
+const URL = 'http://localhost:8080/api/posts'
 
-export async function getAllPosts ({ commit }) {
-  console.log('ACTION GET ALL POSTS')
+export async function getAllPosts ({ commit }, id) {
+  console.log('ACTION GET ALL POSTS ' + id)
   try {
-    const response = await axios.get(URL)
-    console.log('[API RESPONSE]' + JSON.stringify(response.data))
-    commit('getAllPostsMutation', response.data)
+    const response = await axios.get(URL + '/threads/' + id)
+    const { data } = response.data
+    console.log('POSTS = ' + JSON.stringify(data))
+    commit('getAllPostsMutation', data)
+
+    // console.log('[API RESPONSE]' + JSON.stringify(response.data))
+    // commit('getAllPostsMutation', response.data)
   } catch (error) {
     console.log(error)
   }
@@ -30,9 +34,13 @@ export async function postPosts ({ commit }, dataIn) {
     const instert = await axios.post('http://localhost:8080/api/posts/', dataIn)
 
     // console.log('[AXIOS RESPONSE]' + JSON.stringify(instert.data))
-    const response = await axios.get('http://localhost:8080/api/posts/thread/' + dataIn.threadId)
-    commit('getAllPostsMutation', response.data)
-    console.log('[AXIOS RESPONSE]' + JSON.stringify(response.data))
+    const response = await axios.get('http://localhost:8080/api/posts/threads/' + dataIn.threadId)
+    const { data } = response.data
+    console.log('POSTS = ' + JSON.stringify(data))
+    commit('getAllPostsMutation', data)
+
+    // commit('getAllPostsMutation', response.data)
+    // console.log('[AXIOS RESPONSE]' + JSON.stringify(response.data))
     return response
     // commit('getAllPostsMutation', response.data)
   } catch (error) {

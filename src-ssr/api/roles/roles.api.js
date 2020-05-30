@@ -1,10 +1,10 @@
+const debug = require('debug')('src-ssr:api:association:association.api')
 const express = require('express')
 const router = express.Router()
 const crud = require('../crud')
 const model = require('./model')
 
-const api = 'threads'
-
+const api = 'roles'
 // ----------------------------------------------------------------------------------
 // CRUD ROUTES
 const resourceRoute = require('../../components/resource-route')

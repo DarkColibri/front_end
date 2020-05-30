@@ -12,10 +12,20 @@ module.exports = {
         type: Sequelize.STRING
       },
       threadId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'threads'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'SET NULL'
       },
       userId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'users'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'SET NULL'
       },
       votesUp: {
         type: Sequelize.INTEGER

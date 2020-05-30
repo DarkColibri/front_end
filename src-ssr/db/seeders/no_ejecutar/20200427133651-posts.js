@@ -5,8 +5,8 @@ module.exports = {
     return queryInterface.bulkInsert('posts', [
       {
         content: '¿Cómo nos repartimos las tareas?',
-        threadId: 1,
-        userId: 2,
+        threadId: 3,
+        userId: 4,
         votesUp: 0,
         votesDown: 0,
         postRefId: null,
@@ -15,8 +15,8 @@ module.exports = {
       },
       {
         content: 'Ana: Protagonista, María: cámara y Pepe: catering.',
-        threadId: 1,
-        userId: 3,
+        threadId: 3,
+        userId: 4,
         votesUp: 0,
         votesDown: 0,
         postRefId: 1,
@@ -25,8 +25,8 @@ module.exports = {
       },
       {
         content: 'Pues esto sería otro comentario modificado.',
-        threadId: 1,
-        userId: 3,
+        threadId: 3,
+        userId: 4,
         votesUp: 0,
         votesDown: 0,
         postRefId: null,

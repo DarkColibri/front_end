@@ -12,21 +12,19 @@ function selectModel (dir) {
 }
 // GET ALL
 async function index (request) {
-  debug('INDEX ' + request.method + ' ' + request.originalUrl)
+  // debug('INDEX ' + request.method + ' ' + request.originalUrl)
   const table = selectModel(request.baseUrl)
   const data = await table.findAll()
   return { data }
 }
-
 // GET ONE
 async function load (request) {
-  debug('LOAD ' + request.method + ' ' + request.originalUrl)
+  // debug('LOAD ' + request.method + ' ' + request.originalUrl)
   const { params } = request
   const table = selectModel(request.baseUrl)
   const data = await table.findOne({ where: { id: params[id] } })
   return { data }
 }
-
 // CREATE
 async function create (request) {
   try {
@@ -39,10 +37,9 @@ async function create (request) {
     return { data: { error: err } }
   }
 }
-
 // UPDATE
 async function update (request) {
-  debug('UPDATE ' + request.method + ' ' + request.originalUrl)
+  // debug('UPDATE ' + request.method + ' ' + request.originalUrl)
   // const { body, resource, params } = request
   const { body, params } = request
   try {
@@ -58,7 +55,7 @@ async function update (request) {
 // DESTROY
 async function destroy (request) {
   try {
-    debug('desrtoy ' + request.method + ' ' + request.originalUrl)
+    // debug('desrtoy ' + request.method + ' ' + request.originalUrl)
     const { resource, params } = request
 
     const table = selectModel(request.baseUrl)
@@ -75,7 +72,7 @@ async function destroy (request) {
 
 // GET ALL with DELETED
 async function indexForce (request) {
-  debug('INDEX PARANOID ' + request.method + ' ' + request.originalUrl)
+  // debug('INDEX PARANOID ' + request.method + ' ' + request.originalUrl)
   const table = selectModel(request.baseUrl)
   const data = await table.findAll({ paranoid: false })
   return { data }
@@ -83,7 +80,7 @@ async function indexForce (request) {
 
 // GET ONE with DELETED
 async function loadForce (request) {
-  debug('LOAD PARANOID ' + request.method + ' ' + request.originalUrl)
+  // debug('LOAD PARANOID ' + request.method + ' ' + request.originalUrl)
   const { params } = request
   const table = selectModel(request.baseUrl)
   const data = await table.findOne({ where: { id: params[id] }, paranoid: false })
@@ -93,7 +90,7 @@ async function loadForce (request) {
 // DELETE FORCE
 async function destroyForce (request) {
   try {
-    debug('DESTROY FORCE ' + request.method + ' ' + request.originalUrl)
+    // debug('DESTROY FORCE ' + request.method + ' ' + request.originalUrl)
     const { resource, params } = request
     debug(params)
     const table = selectModel(request.baseUrl)
