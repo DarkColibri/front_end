@@ -78,7 +78,7 @@ export default {
   },
   computed: {
     ...mapState('users', ['userLogin']),
-    ...mapState('categories', ['allCategoriesState']),
+    ...mapState('categories', ['allCategories']),
     ...mapState('threads', ['threadState'])
   },
   methods: {
@@ -116,16 +116,16 @@ export default {
       this.thread.visits = this.threadState.visits
     }
     await this.getAllCategories()
-    // console.log(this.allCategoriesState)
-    for (let j = 0; j < this.allCategoriesState.length; j += 1) {
-      // console.log(this.allCategoriesState[j])
-      const insert = this.options.push(this.allCategoriesState[j]) - 1
+    // console.log(this.allCategories)
+    for (let j = 0; j < this.allCategories.length; j += 1) {
+      // console.log(this.allCategories[j])
+      const insert = this.options.push(this.allCategories[j]) - 1
       // console.log(insert)
-      this.options[insert].label = this.allCategoriesState[j].name
-      this.options[insert].value = this.allCategoriesState[j].id
+      this.options[insert].label = this.allCategories[j].name
+      this.options[insert].value = this.allCategories[j].id
     }
     // console.log(this.options)
-    // this.options = this.allCategoriesState
+    // this.options = this.allCategories
     this.thread.userId = this.userLogin.id
     // console.log('oooooooooooooooooooo')
   }

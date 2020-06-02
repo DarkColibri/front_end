@@ -79,7 +79,7 @@ export default {
     this.categories = await this.getCategoriesFromAssociation(this.id)
     console.log('CREATED Categories = ' + JSON.stringify(this.categories))
     for (let j = 0; j < this.categories.length; j += 1) {
-      // console.log(this.allCategoriesState[j])
+      // console.log(this.allCategories[j])
       this.categories[j].associationName = await this.getNameCategory(this.categories[j].categoryId)
       console.log(this.categories[j].associationName)
     }

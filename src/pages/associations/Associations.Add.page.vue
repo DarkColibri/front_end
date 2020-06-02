@@ -41,7 +41,7 @@
           filled
           v-model="model"
           multiple
-          :options="allCategoriesState"
+          :options="allCategories"
           :option-label="getLabel"
           :option-value="getValue"
           map-options
@@ -89,7 +89,7 @@ export default {
   },
   computed: {
     ...mapState('users', ['userLogin']),
-    ...mapState('categories', ['allCategoriesState']),
+    ...mapState('categories', ['allCategories']),
     ...mapState('associations', ['association'])
   },
   methods: {
@@ -104,7 +104,7 @@ export default {
     },
     async onSubmit () {
       // console.log('Enviamos Foro: ' + JSON.stringify(this.thread))
-      console.log(this.model)
+      // console.log(this.model)
       this.form.categories = this.model
       if (this.$route.fullPath.includes('/add')) {
         await this.createAssociation(this.form)
@@ -116,7 +116,6 @@ export default {
     },
     onReset () {
       console.log(this.model)
-      console.log(this.model2)
     }
   },
   async created () {

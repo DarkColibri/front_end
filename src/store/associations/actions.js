@@ -76,7 +76,8 @@ export async function createAssociation ({ commit }, body) {
 export async function deleteAssociation ({ commit }, id) {
   try {
     // console.log('ACCTION deleteAssociation - ' + url + id)
-    const deleted = await axios.delete(url + id)
+    await axios.delete(url + id)
+    await axios.delete(urlAssocat + 'asso/' + id)
   } catch (error) {
     console.error(error)
     return false
@@ -86,8 +87,8 @@ export async function deleteAssociation ({ commit }, id) {
 export async function updateAssociation ({ commit }, body) {
   console.log('ACCTION updateAssociation - ' + url)
   try {
-    console.log(body.id)
-    console.log(body)
+    // console.log(body.id)
+    // console.log(body)
     // UPDATE
     const response = await axios.put(url + body.id, body)
     const { data } = response.data

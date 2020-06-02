@@ -20,7 +20,13 @@ router.get('/categories/:id', async (req, res) => {
   // debug(data)
   res.send({ data })
 })
-
+// DELETE CATEGORIÍAS de una asociacion
+router.delete('/asso/:id', async (req, res) => {
+  const { id } = req.params
+  const data = await model.destroy({ where: { associationId: id } })
+  // debug(data)
+  res.send({ data })
+})
 // DELETE PARANOID CATEGORIÍAS de una asociacion
 router.delete('/categories/:id', async (req, res) => {
   const { id } = req.params

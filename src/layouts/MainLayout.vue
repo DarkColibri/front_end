@@ -99,6 +99,12 @@ export default {
           link: '/associations'
         },
         {
+          title: 'Categorias',
+          caption: 'categorias',
+          icon: 'category',
+          link: '/categories'
+        },
+        {
           title: 'Foro',
           caption: 'forum',
           icon: 'record_voice_over',
@@ -142,6 +148,8 @@ export default {
       // console.log(currentPath)
       if (currentPath === '/chat') return 'Chat'
       else if (currentPath === '/auth') return 'Login'
+      else if (currentPath.includes('/categories')) return 'Categorías'
+      else if (currentPath.includes('/categories/add')) return 'Nueva Categoría'
       else if (currentPath === '/threads') return 'Foros'
       else if (currentPath.includes('/threads/add')) return 'Nuevo Foro'
       else if (currentPath.includes('/posts/')) return 'Posts'
@@ -162,77 +170,17 @@ export default {
   // },
   async created () {
     try {
-      // console.log('CREATED MainLayout [' + this.$route.fullPath + ']')
       await this.UserLogin(this.$route.fullPath)
-      // console.log('MainLayout userLogin:')
-      // console.log('Usuario logueado: ' + JSON.stringify(this.userLogin))
-
       if (this.userLogin === null) {
-        // console.log('Usuario NULL!!')
         if (this.$route.fullPath !== '/' && this.$route.fullPath !== '/login') {
-          // console.log('Go to ... /login')
           this.$router.push('/login')
-          // console.log('>>>>>>>>>>>>>')
         }
       }
-      // console.log('CREATED MainLayout. Salimos OK.')
     } catch (err) {
       console.error('ERROR MainLayout')
       console.log(err)
       console.log('CREATED MainLayout. Salimos KO.')
     }
-    // console.log('Go to ... ' + this.$route.fullPath)
-    // console.log('CREATED MainLayout [ESTO SIEMPRE SALE]')
   }
-  // beforeMount () {
-  //   console.log('BeforeMount .................')
-  //   console.log(this.userLogin)
-  //   console.log('BeforeMount .................')
-  // },
-  // mounted () {
-  //   console.log('mounted .................')
-  //   console.log(this.userLogin)
-  //   console.log('mounted .................')
-  //   // try {
-  //   //   console.log('MOUNTED MainLayout : ' + this.$route.fullPath)
-  //   //   await this.UserLogin(this.$route.fullPath)
-  //   //   console.log('USER')
-  //   //   console.log(this.userLogin)
-
-  //   //   if (this.userLogin === null) {
-  //   //     console.log('Usuario NULL.')
-  //   //     if (this.$route.fullPath !== '/' && this.$route.fullPath !== '/login') {
-  //   //       console.log('Go to ... /login')
-  //   //       this.$router.push('/login')
-  //   //       console.log('>>>>>>>>>>>>>')
-  //   //     }
-  //   //   }
-  //   //   console.log('Go to ... ' + this.$route.fullPath)
-  //   // } catch (err) {
-  //   //   console.error('ERROR MainLayout')
-  //   //   console.log(err)
-  //   // }
-  // },
-  // beforeUpdate () {
-  //   console.log('beforeUpdate .................')
-  //   console.log(this.userLogin)
-  //   console.log('beforeUpdate .................')
-  // },
-  // updated () {
-  //   console.log('updated .................')
-  //   console.log(this.userLogin)
-  //   console.log('updated .................')
-  // },
-  // beforeDestroy () {
-  //   console.log('updated .................')
-  //   console.log(this.userLogin)
-  //   console.log('updated .................')
-  // },
-  // destroyed () {
-  //   console.log('updated .................')
-  //   console.log(this.userLogin)
-  //   console.log('updated .................')
-  // }
-
 }
 </script>
