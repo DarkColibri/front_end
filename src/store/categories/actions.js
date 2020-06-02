@@ -29,20 +29,20 @@ export async function getAllCategories ({ commit }) {
   }
 }
 
-// export async function getNameCategory ({ commit }, id) {
-//   // console.log('ACCTION getAllCategories - ' + url)
-//   try {
-//     // console.log('getNameCategory')
-//     const response = await axios.get(url + id)
-//     const { data } = response.data
-//     // console.log('NOMBRES DE LAS CATEGORIAS = ' + JSON.stringify(data))
-//     return data.name
-//     // console.log(JSON.stringify(response.data.name))
-//     // return response.data.name
-//   } catch (error) {
-//     console.error(error.data)
-//   }
-// }
+export async function getNameCategory ({ commit }, id) {
+  // console.log('ACCTION getAllCategories - ' + url)
+  try {
+    // console.log('getNameCategory')
+    const response = await axios.get(url + id)
+    const { data } = response.data
+    // console.log('NOMBRES DE LAS CATEGORIAS = ' + JSON.stringify(data))
+    return data.name
+    // console.log(JSON.stringify(response.data.name))
+    // return response.data.name
+  } catch (error) {
+    console.error(error.data)
+  }
+}
 
 export async function createCategory ({ commit }, body) {
   // console.log('ACCTION getAllCategories - ' + url)

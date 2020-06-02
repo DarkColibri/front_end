@@ -82,7 +82,9 @@ module.exports.extendApp = function ({ app, ssr }) {
   app.use('/api/posts', postApi)
 
   app.use(require('./routes/auth.routes'))
-  app.use('/api/users', require('./routes/users.routes'))
+
+  const userApi = require('./api/users/users.api')
+  app.use('/api/users', userApi)
 
   // app.use('/api/asocat', require('./routes/associationcategories.router'))
   // app.use('/api/associations', require('./routes/associations.router'))

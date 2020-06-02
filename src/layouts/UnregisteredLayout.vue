@@ -122,21 +122,21 @@ export default {
   // },
   async created () {
     try {
-      console.log('MainLayout Created .................. ' + this.$route.fullPath)
+      // console.log('MainLayout Created .................. ' + this.$route.fullPath)
       await this.UserLogin(this.$route.fullPath)
-      console.log('MainLayout userLogin:')
-      console.log(this.userLogin)
+      // console.log('MainLayout userLogin:')
+      // console.log(this.userLogin)
 
       if (this.userLogin === null) {
-        console.log('Usuario NULL!!')
+        // console.log('Usuario NULL!!')
         if (this.$route.fullPath !== '/' && this.$route.fullPath !== '/login') {
-          console.log('Go to ... /login')
-          this.$router.push('/login')
+          // console.log('Go to ... /login')
+          // this.$router.push('/login')
           // console.log('>>>>>>>>>>>>>')
         }
       }
     } catch (err) {
-      console.error('ERROR MainLayout')
+      // console.error('ERROR MainLayout')
       console.log(err)
     }
     // console.log('Go to ... ' + this.$route.fullPath)

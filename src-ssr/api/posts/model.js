@@ -48,9 +48,26 @@ class posts extends Model {
 
 module.exports = posts.init(
   {
-    content: DataTypes.STRING,
-    threadId: DataTypes.INTEGER,
-    userId: DataTypes.INTEGER,
+    content: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    threadId: {
+      type: Sequelize.INTEGER,
+      references: {
+        model: 'threads'
+      },
+      onUpdate: 'CASCADE',
+      onDelete: 'SET NULL'
+    },
+    userId: {
+      type: Sequelize.INTEGER,
+      references: {
+        model: 'users'
+      },
+      onUpdate: 'CASCADE',
+      onDelete: 'SET NULL'
+    },
     votesUp: DataTypes.INTEGER,
     votesDown: DataTypes.INTEGER,
     postRefId: DataTypes.INTEGER

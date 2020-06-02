@@ -48,7 +48,11 @@ class categories extends Model {
 
 module.exports = categories.init(
   {
-    name: DataTypes.STRING,
+    name: {
+      type: Sequelize.STRING,
+      allowNull: false,
+      unique: true
+    },
     description: DataTypes.STRING
   },
   {

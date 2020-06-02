@@ -32,7 +32,7 @@
           label="Login" />
       <q-btn
           v-else
-          @click="UserLogout"
+          @click="UserLogout(userLogin)"
           class="absolute-right q-pr-sm"
           icon="exit_to_app"
           no-caps
@@ -161,7 +161,11 @@ export default {
   },
   methods: {
     ...Vuex.mapActions('users', ['UserLogin', 'UserLogout']),
-    ...Vuex.mapActions('categories', ['getAllCategories'])
+    ...Vuex.mapActions('categories', ['getAllCategories']),
+    async logout () {
+      console.log('logout')
+      await this.UserLogout(this.userLogin)
+    }
 
   },
   // beforeCreate () {

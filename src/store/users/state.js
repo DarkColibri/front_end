@@ -2,6 +2,6 @@
 export default function () {
   return {
     userLogin: null,
-    allUsersState: []
+    allUsers: []
   }
 }

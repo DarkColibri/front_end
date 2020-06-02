@@ -3,7 +3,7 @@ const debug = require('debug')('src-ssr:api_authentication:router:auth.routes')
 const express = require('express')
 const router = express.Router()
 
-const { renderSignUp, signUp, renderSignIn, signIn, logout } = require('../controllers/auth.controller')
+const { signUp, signIn, logout } = require('../controllers/auth.controller')
 
 // LOGIN: Realiza el logeo
 router.post('/signin', signIn)

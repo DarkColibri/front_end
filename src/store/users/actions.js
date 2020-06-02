@@ -1,6 +1,4 @@
 
-// El DEBUG aquí no funciona.
-
 import axios from 'axios'
 const URL = 'http://localhost:8080/api/users/'
 
@@ -9,11 +7,12 @@ export async function getAllUsers ({ commit }) {
     // console.log('[GET ALL USERS] ' + URL)
     // GET ALL users
     const response = await axios.get(URL)
-    // console.log('[USERS] ' + JSON.stringify(response.data))
-    commit('getAllUsersMUT', response.data)
+    const { data } = response.data
+    // console.log('[USERS] ' + JSON.stringify(data))
+    commit('setAllUsersMUT', data)
   } catch (error) {
-    console.error(error.data)
-    commit('getAllUsersMUT', null)
+    console.error(error)
+    commit('setAllUsersMUT', null)
   }
 }
 
@@ -23,11 +22,10 @@ export async function getUser ({ commit }, user) {
     // GET user
     const response = await axios.get(URL + user.name + '/' + user.password)
     // console.log('[ACTION USER] ' + JSON.stringify(response.data))
-    //
-    commit('getUserMUT', response.data)
+    commit('setUserMUT', response.data)
   } catch (error) {
-    console.error(error.data)
-    commit('getUserMUT', null)
+    console.error(error)
+    commit('setUserMUT', null)
   }
 }
 
@@ -42,10 +40,10 @@ export async function createUser ({ commit }, dataIn) {
     // GET ALL users
     // const response = await axios.get(URL)
     // console.log('[ACTION][USERS]' + JSON.stringify(response.data))
-    commit('getUserMUT', instert.data)
+    commit('setUserMUT', instert.data)
   } catch (error) {
     console.error(error)
-    commit('getUserMUT', null)
+    commit('setUserMUT', null)
   }
 }
 
@@ -58,7 +56,7 @@ export async function updateUser ({ commit }, dataIn, id) {
     // GET ALL users
     const response = await axios.get(URL)
     // console.log('[USERS]' + JSON.stringify(response.data))
-    commit('getAllUsersMUT', response.data)
+    commit('setAllUsersMUT', response.data)
   } catch (error) {
     console.error(error)
   }
@@ -72,7 +70,7 @@ export async function deleteUser ({ commit }, id) {
     // GET ALL users
     const response = await axios.get(URL)
     // console.log('[ACTION][USERS]' + JSON.stringify(response.data))
-    commit('getAllUsersMUT', response.data)
+    commit('setAllUsersMUT', response.data)
 
     return deleted
   } catch (error) {
@@ -87,50 +85,40 @@ export async function UserLogin ({ commit }, fullPath) {
     // GET USER LOGIN
     await axios.get('http://localhost:8080/api/users/getUserLogin')
       .then(response => {
-        // // console.log(response.data)
-        commit('getUserMUT', response.data)
+        const data = response.data
+        console.log(data)
+        data.online = true
+        commit('setUserMUT', data)
+        axios.put(URL + data.id, data)
         if (fullPath === '/login') {
           this.$router.push('/profile')
         }
-        // console.log('ACTION UserLogin. Salimos OK.')
       })
       .catch(err => {
         console.error('Error al autenticar. ' + err)
-        commit('getUserMUT', null)
-        console.error('2 - Despues del commit. Realizamos return null.')
+        commit('setUserMUT', null)
         if (fullPath === '/' || fullPath === '/login') {
-          // console.log('1 - Go to ... ' + fullPath)
-          // this.$router.push(fullPath)
-          // } else if (fullPath === '/login') {
-          // console.log('2 - Go to ...  ' + fullPath)
         } else {
           this.$router.push('/login')
         }
-        // console.log('ACTION UserLogin. Salimos KO.')
       })
   } catch (error) {
-    console.error('ERROR en ' + fullPath)
-    commit('getUserMUT', null)
-    console.error('3 - Despues del commit. Realizamos return null')
-    console.log('ACTION UserLogin. Salimos CATCH.')
-    // return null
+    commit('setUserMUT', null)
   }
-  // console.log('ACTION UserLogin [ESTO SIEMPRE SALE]')
 }
 
-export async function UserLogout ({ commit }) {
+export async function UserLogout ({ commit }, dataIn) {
   try {
-    // console.log('LOGIN: ' + JSON.stringify(user))
-    // console.log('UserLogout')
-    const response = await axios.get('http://localhost:8080/logout')
-    // console.log('Logout ... [OK]')
-    commit('getUserMUT', null)
+    // Logout
+    await axios.get('http://localhost:8080/logout')
+    commit('setUserMUT', null)
+    // ONLINE = false
+    const user = dataIn
+    user.online = false
+    await axios.put(URL + user.id, user)
   } catch (error) {
-    console.error(error.data)
-    commit('getUserMUT', null)
+    commit('setUserMUT', null)
   }
-
-  // console.log('Vamos ha hacer el router.push()')
   this.$router.push('/')
 }
 
@@ -140,7 +128,8 @@ export async function getNameUser ({ commit }, id) {
     // console.log('getNameUser∫')
     const response = await axios.get(URL + id)
     // console.log(JSON.stringify(response.data.name))
-    return response.data.name
+    const { data } = response.data
+    return data.name
   } catch (error) {
     console.error(error.data)
   }

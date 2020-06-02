@@ -48,7 +48,11 @@ class associations extends Model {
 
 module.exports = associations.init(
   {
-    name: DataTypes.STRING,
+    name: {
+      type: Sequelize.STRING,
+      allowNull: false,
+      unique: true
+    },
     description: DataTypes.STRING,
     link: DataTypes.STRING
   },

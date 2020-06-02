@@ -3,7 +3,7 @@
     <q-list
     class="full-width"
     separator>
-      <q-item v-for="user in allUsersState"
+      <q-item v-for="user in allUsers"
       :key="user.id"
       to="/chat"
       clickable
@@ -21,7 +21,7 @@
 
         <q-item-section side>
           <q-badge
-            :color="online ? 'light-green-5' : 'grey-4'">
+            :color="user.online ? 'light-green-5' : 'grey-4'">
             {{ online ? 'Online' : 'offline'}}
           </q-badge>
         </q-item-section>
@@ -40,55 +40,14 @@ export default {
     }
   },
   computed: {
-    ...mapState('users', ['allUsersState', 'userLogin'])
+    ...mapState('users', ['allUsers', 'userLogin'])
   },
   methods: {
     ...mapActions('users', ['getAllUsers'])
   },
-  // beforeCreate () {
-  //   console.log('User BeforCreated .................')
-  //   console.log(this.userLogin)
-  //   console.log('User BeforCreated .................')
-  // },
   async created () {
-    console.log('User Created ...................')
-    console.log(this.userLogin)
     await this.getAllUsers()
-    console.log('User Created ...................')
+    // console.log('User Created ...................')
   }
-  // beforeMount () {
-  //   console.log('User BeforeMount .................')
-  //   console.log(this.userLogin)
-  //   console.log('User BeforeMount .................')
-  // },
-  // mounted () {
-  //   console.log('User Mounted .................')
-  //   console.log(this.userLogin)
-  //   console.log('User Mounted .................')
-  // },
-  // async beforeUpdate () {
-  //   console.log('User beforeUpdate .................')
-  //   console.log(this.userLogin)
-  //   // if (this.userLogin !== null) {
-  //   await this.getAllUsers()
-  //   // }
-  //   console.log('User beforeUpdate .................')
-  // },
-  // updated () {
-  //   console.log('User updated .................')
-  //   console.log(this.userLogin)
-  //   console.log('User updated .................')
-  // },
-  // beforeDestroy () {
-  //   console.log('User updated .................')
-  //   console.log(this.userLogin)
-  //   console.log('User updated .................')
-  // },
-  // destroyed () {
-  //   console.log('User updated .................')
-  //   console.log(this.userLogin)
-  //   console.log('User updated .................')
-  // }
-
 }
 </script>

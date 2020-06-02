@@ -1,8 +1,4 @@
 import axios from 'axios'
-// const db = require('../../../src-ssr/db/models')
-// // const Repository = require('../repositoy/base.repository')
-// const Repository = require('../../../src-ssr/api/repositoy/base.repository')
-// const repository = new Repository(db, 'posts')
 
 const URL = 'http://localhost:8080/api/posts'
 

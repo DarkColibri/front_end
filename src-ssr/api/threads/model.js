@@ -49,10 +49,27 @@ class threads extends Model {
 
 module.exports = threads.init(
   {
+    subject: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
     description: DataTypes.STRING,
-    subject: DataTypes.STRING,
-    categoryId: DataTypes.INTEGER,
-    userId: DataTypes.INTEGER,
+    categoryId: {
+      type: Sequelize.INTEGER,
+      onDelete: 'SET NULL',
+      onUpdate: 'CASCADE',
+      references: {
+        model: 'categories'
+      }
+    },
+    userId: {
+      type: Sequelize.INTEGER,
+      onDelete: 'SET NULL',
+      onUpdate: 'CASCADE',
+      references: {
+        model: 'users'
+      }
+    },
     replies: DataTypes.INTEGER,
     visits: DataTypes.INTEGER,
     views: DataTypes.INTEGER

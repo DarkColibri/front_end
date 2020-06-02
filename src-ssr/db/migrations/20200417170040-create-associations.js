@@ -1,7 +1,8 @@
 'use strict'
+
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('roles', {
+    return queryInterface.createTable('associations', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -16,18 +17,16 @@ module.exports = {
       description: {
         type: Sequelize.STRING
       },
+      link: {
+        type: Sequelize.STRING
+      },
       createdAt: {
         allowNull: false,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
         type: Sequelize.DATE
       },
       updaterId: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'users'
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'SET NULL'
+        type: Sequelize.INTEGER
       },
       updatedAt: {
         allowNull: false,
@@ -35,19 +34,15 @@ module.exports = {
         type: Sequelize.DATE
       },
       deleterId: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'users'
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'SET NULL'
+        type: Sequelize.INTEGER
       },
       deletedAt: {
         type: Sequelize.DATE
       }
     })
   },
+
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('roles')
+    return queryInterface.dropTable('associations')
   }
 }

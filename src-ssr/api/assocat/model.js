@@ -36,20 +36,34 @@ class assocat extends Model {
   }
 
   static associate () {
-    debug('Asociamos modelo')
     this.trackModel(this)
   }
 
   get content () {
-    debug(this.content)
     return this.content
   }
 }
 
 module.exports = assocat.init(
   {
-    categoryId: DataTypes.INTEGER,
-    associationId: DataTypes.INTEGER
+    categoryId: {
+      type: Sequelize.INTEGER,
+      allowNull: false,
+      onDelete: 'CASCADE',
+      onUpdate: 'CASCADE',
+      references: {
+        model: 'categories'
+      }
+    },
+    associationId: {
+      type: Sequelize.INTEGER,
+      allowNull: false,
+      onDelete: 'CASCADE',
+      onUpdate: 'CASCADE',
+      references: {
+        model: 'associations'
+      }
+    }
   },
   {
     sequelize,

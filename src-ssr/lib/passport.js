@@ -3,9 +3,8 @@ const debug = require('debug')('src-ssr:api_authentication:lib:passport')
 const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
 
-const db = require('../db/models')
-const Repository = require('../repositoy/base.repository')
-const repository = new Repository(db, 'users')
+// const crud = require('../api/crud')
+const model = require('../api/users/model')
 
 const helpers = require('./helpers')
 
@@ -19,8 +18,10 @@ passport.use(
     },
     async (req, username, password, done) => {
       // debug('SignIn ' + username)
-      const rows = await repository.getUser(username)
-
+      // const rows = await repository.getUser(username)
+      const rows = await model.findAll({
+        where: { name: username }
+      })
       // debug('Existe usuario..... [OK]')
       if (rows.length > 0) {
         const user = rows[0].dataValues
@@ -66,7 +67,7 @@ passport.use(
 
       // Saving in the Database
       // debug('Saving user in Database')
-      const resultado = await repository.create(newUser)
+      const resultado = await model.create(newUser)
       newUser.id = resultado.id
       return done(null, newUser)
     }
@@ -79,7 +80,8 @@ passport.serializeUser((user, done) => {
 })
 
 passport.deserializeUser(async (id, done) => {
-  // debug('DesSerialize user. BUSCAMOS EL USUARIO EN LA BD.')
-  const rows = await repository.findOne(id)
-  done(null, rows)
+  // debug('DesSerialize user. BUSCAMOS EL USUARIO ' + id + ' EN LA BD.')
+  const data = await model.findOne({ where: { id: id } })
+  // const rows = await model.findOne(id)
+  done(null, data)
 })

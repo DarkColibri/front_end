@@ -30,12 +30,7 @@ module.exports = {
         type: Sequelize.DATE
       },
       updaterId: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'users'
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'SET NULL'
+        type: Sequelize.INTEGER
       },
       updatedAt: {
         allowNull: false,
@@ -43,12 +38,7 @@ module.exports = {
         type: Sequelize.DATE
       },
       deleterId: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'users'
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'SET NULL'
+        type: Sequelize.INTEGER
       },
       deletedAt: {
         type: Sequelize.DATE

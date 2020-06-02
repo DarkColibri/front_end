@@ -1,8 +1,7 @@
 'use strict'
-
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('associations', {
+    return queryInterface.createTable('categories', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -17,42 +16,25 @@ module.exports = {
       description: {
         type: Sequelize.STRING
       },
-      link: {
-        type: Sequelize.STRING
-      },
       createdAt: {
         allowNull: false,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
         type: Sequelize.DATE
       },
       updaterId: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'users'
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'SET NULL'
+        type: Sequelize.INTEGER
       },
       updatedAt: {
         allowNull: false,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'),
         type: Sequelize.DATE
       },
-      deleterId: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'users'
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'SET NULL'
-      },
       deletedAt: {
         type: Sequelize.DATE
       }
     })
   },
-
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('associations')
+    return queryInterface.dropTable('categories')
   }
 }
