@@ -10,3 +10,9 @@ export function setAllUsersMUT (state, data) {
   state.allUsers = data
   // debug('allUsers : ' + JSON.stringify(state.allUsers))
 }
+
+export function updateUserMUT (state, data) {
+  console.log('======== UPDATE =========')
+  console.log(data)
+  // Object.assign(state.)
+}

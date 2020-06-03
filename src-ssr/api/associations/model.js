@@ -54,7 +54,8 @@ module.exports = associations.init(
       unique: true
     },
     description: DataTypes.STRING,
-    link: DataTypes.STRING
+    link: DataTypes.STRING,
+    iconLink: Sequelize.STRING
   },
   {
     sequelize,

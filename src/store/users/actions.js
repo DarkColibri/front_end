@@ -77,8 +77,7 @@ export async function deleteUser ({ commit }, id) {
     console.error(error)
   }
 }
-
-// UTILIZAR USUARIO_LOGUEADO
+// LOGIN
 export async function UserLogin ({ commit }, fullPath) {
   try {
     // console.log('ACTINON UserLogin - http://localhost:8080/api/users/getUserLogin')
@@ -102,24 +101,29 @@ export async function UserLogin ({ commit }, fullPath) {
           this.$router.push('/login')
         }
       })
+    // const response = await axios.get(URL)
+    // const { data } = response.data
+    // console.log('>>>>>> [USERS] ' + JSON.stringify(data))
+    // commit('setAllUsersMUT', data)
   } catch (error) {
     commit('setUserMUT', null)
   }
 }
-
+// LOGOUT
 export async function UserLogout ({ commit }, dataIn) {
   try {
     // Logout
     await axios.get('http://localhost:8080/logout')
     commit('setUserMUT', null)
+    this.$router.push('/')
     // ONLINE = false
     const user = dataIn
     user.online = false
     await axios.put(URL + user.id, user)
   } catch (error) {
     commit('setUserMUT', null)
+    this.$router.push('/')
   }
-  this.$router.push('/')
 }
 
 export async function getNameUser ({ commit }, id) {

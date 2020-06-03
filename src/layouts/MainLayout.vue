@@ -38,7 +38,7 @@
           no-caps
           flat
           dense
-          label="Logout" />
+          :label="userLogin.name" />
       </q-toolbar>
     </q-header>
 
@@ -83,19 +83,19 @@ export default {
         {
           title: 'Perfil',
           caption: 'Perfil',
-          icon: 'account_box',
+          icon: 'person',
           link: '/profile'
         },
         {
           title: 'Usuarios',
           caption: 'usuarios',
-          icon: 'account_box',
+          icon: 'group',
           link: '/users'
         },
         {
           title: 'Asociaciones',
           caption: 'asociaciones',
-          icon: 'group',
+          icon: 'group_work',
           link: '/associations'
         },
         {
@@ -161,11 +161,11 @@ export default {
   },
   methods: {
     ...Vuex.mapActions('users', ['UserLogin', 'UserLogout']),
-    ...Vuex.mapActions('categories', ['getAllCategories']),
-    async logout () {
-      console.log('logout')
-      await this.UserLogout(this.userLogin)
-    }
+    ...Vuex.mapActions('categories', ['getAllCategories'])
+    // async logout () {
+    //   console.log('logout')
+    //   await this.UserLogout(this.userLogin)
+    // }
 
   },
   // beforeCreate () {
@@ -185,6 +185,15 @@ export default {
       console.log(err)
       console.log('CREATED MainLayout. Salimos KO.')
     }
+  },
+  begoreDestroy () {
+    // ///////////////
+    //    LOGOUT    //
+    // ///////////////
+
+    // console.log('*********  DESTROYED *********')
+    // this.UserLogout(this.userLogin)
   }
 }
+
 </script>

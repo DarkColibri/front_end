@@ -50,19 +50,22 @@ class users extends Model {
   //   return hash
   // }
 
-  // static async hashPassword (User) {
+  static hashPassword (User) {
+    debug('ANTES DE GUARDAR')
+    console.log('weeeeeeeeeeeee')
   //   debug('hashPassword()')
   //   debug(User)
   //   if (User.changed('password')) {
   //     debug('Asignamos el password al usuario.')
   //     User.set('password', await this.getHash(User.password))
   //   }
-  // }
+  }
 
-  // get name () {
-  //   debug(`${this.firstName} ${this.lastName}`)
-  //   return `${this.firstName} ${this.lastName}`
-  // }
+  get name () {
+    debug(`${this.name}`)
+    console.log('GET NAME! ')
+    return `${this.name}`
+  }
 }
 
 module.exports = users.init(
@@ -105,4 +108,4 @@ module.exports = users.init(
 )
 
 // eslint-disable-next-line @typescript-eslint/unbound-method
-// users.beforeSave(users.hashPassword)
+users.beforeSave(users.hashPassword)

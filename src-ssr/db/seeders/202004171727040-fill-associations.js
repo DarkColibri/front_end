@@ -7,12 +7,14 @@ module.exports = {
         name: 'Energy Control',
         description: 'Reducción de riesgos en el consumo de drogas.',
         link: 'https://energycontrol.org/',
+        iconLink: '',
         createdAt: new Date(),
         updatedAt: new Date()
       }, {
         name: 'Alcoholicos Anónimos',
         description: 'Asociación creada para resolver su problema de alcoholismo y ayudar a otros a recuperarse.',
         link: 'http://www.alcoholicos-anonimos.org/v_portal/apartados/apartado.asp',
+        iconLink: '',
         createdAt: new Date(),
         updatedAt: new Date()
       }], {})

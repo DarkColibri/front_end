@@ -1,13 +1,22 @@
 <template>
   <q-page class="flex q-pa-md">
+
     <q-list
     class="full-width"
     separator>
-      <q-item v-for="user in allUsers"
-      :key="user.id"
+      <q-item v-for="(user, key) in allUsers"
+      :key="key"
       to="/chat"
       clickable
       v-ripple>
+
+        <!-- <div v-if="user.id === userLogin.id">
+          Soy YO!
+        </div>
+        <div v-else>
+          {{ user.id}}
+        </div> -->
+         {{ user.id}}
         <q-item-section avatar>
           <q-avatar color="primary" text-color="white">
             {{ user.name.charAt(0) }}
@@ -22,7 +31,7 @@
         <q-item-section side>
           <q-badge
             :color="user.online ? 'light-green-5' : 'grey-4'">
-            {{ online ? 'Online' : 'offline'}}
+            {{ user.online ? 'Online' : 'offline'}}
           </q-badge>
         </q-item-section>
       </q-item>
@@ -32,7 +41,7 @@
 
 <script>
 
-import { mapState, mapActions } from 'vuex'
+import { mapState, mapActions, mapGetters } from 'vuex'
 export default {
   data () {
     return {
@@ -40,14 +49,14 @@ export default {
     }
   },
   computed: {
-    ...mapState('users', ['allUsers', 'userLogin'])
+    ...mapGetters('users', ['allUsers', 'userLogin'])
+    // ...mapGetters('users', ['allUsers'])
   },
   methods: {
     ...mapActions('users', ['getAllUsers'])
   },
   async created () {
     await this.getAllUsers()
-    // console.log('User Created ...................')
   }
 }
 </script>

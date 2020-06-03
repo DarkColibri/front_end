@@ -5,11 +5,13 @@ const crud = require('../crud')
 const model = require('./model')
 
 const { isLoggedIn } = require('../../lib/auth')
-
 const api = 'users'
+
 // ---------------------------------------------------------------------------------
 // USER LOGUED
 router.get('/getUserLogin', (req, res) => {
+  // debug('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>')
+  // debug(model.name)
   if (isLoggedIn(req, res)) {
     // debug(req.user)
     res.send(req.user)
@@ -20,21 +22,6 @@ router.get('/getUserLogin', (req, res) => {
   }
 })
 
-// ---------------------------------------------------------------------------------
-// OTHER ROUTES
-// CATEGORIÍAS de una asociacion
-router.get('/online/:id', async (req, res) => {
-  const { id } = req.params
-  debug('ONLINE !!')
-  const data = await model.findOne({ where: { id: id } })
-  // debug(user)
-  // const data = await model.updateAttributes({
-  //   locale: req.body.name,
-  //   where: { id: id }
-  // })
-  // debug(data)
-  res.send({ data })
-})
 // ----------------------------------------------------------------------------------
 // CRUD ROUTES
 const resourceRoute = require('../../components/resource-route')

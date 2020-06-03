@@ -5,6 +5,7 @@ const urlcat = 'http://localhost:8080/api/categories/'
 
 async function getAllCategories (association) {
   association.categories = []
+  association.listCatNames = null
   // ASSOCAT
   const assocatResp = await axios.get(urlAssocat + 'categories/' + association.id)
   const { data } = assocatResp.data
@@ -14,8 +15,14 @@ async function getAllCategories (association) {
     const categoriesResp = await axios.get(urlcat + assocat[j].categoryId)
     const { data } = categoriesResp.data
     const cat = data
-
     association.categories.push(cat)
+    if (j === 0) {
+      association.listCatNames = cat.name
+    } else if (j < assocat.length) {
+      association.listCatNames += ', ' + cat.name
+    } else {
+      association.listCatNames += cat.name
+    }
   }
 }
 

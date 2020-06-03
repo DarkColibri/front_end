@@ -20,6 +20,9 @@ module.exports = {
       link: {
         type: Sequelize.STRING
       },
+      iconLink: {
+        type: Sequelize.STRING
+      },
       createdAt: {
         allowNull: false,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),

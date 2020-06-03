@@ -14,6 +14,7 @@ function selectModel (dir) {
 async function index (request) {
   // debug('INDEX ' + request.method + ' ' + request.originalUrl)
   const table = selectModel(request.baseUrl)
+  // console.log('> > > > > > > > > > > > > > > > > > > ' + table.name)
   const data = await table.findAll()
   return { data }
 }
