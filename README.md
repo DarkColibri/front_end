@@ -83,4 +83,4 @@ No cambie los nombres de estos dos archivos. Sin embargo, puede agregar cualquie
 
 Cuando /src-ssr/extension.js es utilizado por el servidor de desarrollo, se supone que la configuración está lista para ser utilizada por un servidor Express. Así que planifique en consecuencia. Si cambia a otro servidor, es posible que desee desacoplar extension.js del servidor de producción (index.js).
 
-O_O
+(O_O)
