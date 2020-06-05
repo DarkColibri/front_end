@@ -1,7 +1,7 @@
 const debug = require('debug')('src-ssr:api_authentication:lib:auth')
 
 module.exports = {
-  isLoggedIn (req, res) {
+  isLoggedIn (req) {
     if (req.isAuthenticated()) {
       // debug('User loged ... [ YES ]')
       return true

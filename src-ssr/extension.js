@@ -27,7 +27,7 @@ module.exports.extendApp = function ({ app, ssr }) {
   // debug('API DE PRUEBA!!! ')
   // const api = require('./api')
 
-  debug('MIDDLEWARES')
+  // debug('MIDDLEWARES')
   const { errorHandler } = require('./components/middlewares')
 
   // Intializations

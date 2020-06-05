@@ -9,14 +9,6 @@
       to="/chat"
       clickable
       v-ripple>
-
-        <!-- <div v-if="user.id === userLogin.id">
-          Soy YO!
-        </div>
-        <div v-else>
-          {{ user.id}}
-        </div> -->
-         {{ user.id}}
         <q-item-section avatar>
           <q-avatar color="primary" text-color="white">
             {{ user.name.charAt(0) }}
@@ -29,8 +21,7 @@
         </q-item-section>
 
         <q-item-section side>
-          <q-badge
-            :color="user.online ? 'light-green-5' : 'grey-4'">
+          <q-badge :color="user.online ? 'light-green-5' : 'grey-4'">
             {{ user.online ? 'Online' : 'offline'}}
           </q-badge>
         </q-item-section>
@@ -43,20 +34,19 @@
 
 import { mapState, mapActions, mapGetters } from 'vuex'
 export default {
-  data () {
-    return {
-      online: false
-    }
-  },
+  // data () {
+  //   return {
+  //     online: false
+  //   }
+  // },
   computed: {
-    ...mapGetters('users', ['allUsers', 'userLogin'])
-    // ...mapGetters('users', ['allUsers'])
+    ...mapGetters('users', ['userLogin', 'allUsers'])
   },
   methods: {
     ...mapActions('users', ['getAllUsers'])
   },
-  async created () {
-    await this.getAllUsers()
+  created () {
+    this.getAllUsers()
   }
 }
 </script>

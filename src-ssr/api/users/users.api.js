@@ -10,15 +10,12 @@ const api = 'users'
 // ---------------------------------------------------------------------------------
 // USER LOGUED
 router.get('/getUserLogin', (req, res) => {
-  // debug('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>')
-  // debug(model.name)
-  if (isLoggedIn(req, res)) {
+  if (isLoggedIn(req)) {
     // debug(req.user)
     res.send(req.user)
   } else {
-    // debug('Usuario no logeado.')
-    res.status(401).send()
-    // res.send()
+    res.status(401).send(null)
+    // res.send(null)
   }
 })
 

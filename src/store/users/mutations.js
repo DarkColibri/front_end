@@ -1,18 +1,13 @@
 const debug = require('debug')('src:store:USERS:mutations')
+import Vue from 'vue'
 
 export function setUserMUT (state, data) {
   state.userLogin = data
   // debug('MUTATIONS GET USER')
-  // debug('userLogin :' + JSON.stringify(state.userLogin))
+  // console.log('commit "setUserMut" => userLogin :' + JSON.stringify(state.userLogin))
 }
 
 export function setAllUsersMUT (state, data) {
   state.allUsers = data
-  // debug('allUsers : ' + JSON.stringify(state.allUsers))
-}
-
-export function updateUserMUT (state, data) {
-  console.log('======== UPDATE =========')
-  console.log(data)
-  // Object.assign(state.)
+  // console.log('commit "setUsersMUT" => setAllUsers : ' + JSON.stringify(state.allUsers))
 }

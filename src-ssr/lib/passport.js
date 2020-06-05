@@ -54,13 +54,14 @@ passport.use(
     async (req, username, password, done) => {
       // debug('SignUp')
       // debug(req.body)
-      const { email, age, roleId } = req.body
+      const { email, age, roleId, online } = req.body
       const newUser = {
         name: username,
         password,
         email: email,
         age: age,
-        roleId: roleId
+        roleId: roleId,
+        online: online
       }
       // debug('Encrypt password')
       newUser.password = await helpers.encryptPassword(password)
@@ -82,6 +83,5 @@ passport.serializeUser((user, done) => {
 passport.deserializeUser(async (id, done) => {
   // debug('DesSerialize user. BUSCAMOS EL USUARIO ' + id + ' EN LA BD.')
   const data = await model.findOne({ where: { id: id } })
-  // const rows = await model.findOne(id)
   done(null, data)
 })

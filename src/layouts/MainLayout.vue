@@ -2,23 +2,15 @@
   <q-layout view="lHh Lpr lFf">
     <q-header elevated>
       <q-toolbar>
-        <!-- Desplegable -->
-        <q-btn v-if="userLogin != null"
-          flat
-          dense
-          round
-          icon="menu"
-          aria-label="Menu"
+
+        <q-btn aria-label="Menu"
+          v-if="userLogin != null" flat dense round icon="menu"
           @click="leftDrawerOpen = !leftDrawerOpen"/>
-        <!-- Botón bac -->
-        <q-btn
-          v-if="$route.fullPath.includes('/chat')"
+
+        <q-btn icon="arrow_back"
           v-go-back.single
-          icon="arrow_back"
-          flat
-          dense
-          label="Back" />
-        <!-- Título -->
+          flat dense />
+
         <q-toolbar-title class="absolute-center">{{title}}</q-toolbar-title>
         <!-- Botón Login -->
         <q-btn
@@ -62,7 +54,7 @@
       </q-list>
     </q-drawer>
 
-    <q-page-container>
+    <q-page-container v-if="userLogin != null || ruta">
       <router-view />
     </q-page-container>
   </q-layout>
@@ -143,7 +135,6 @@ export default {
   computed: {
     ...Vuex.mapState('users', ['userLogin']),
     title () {
-      // console.log('Computed Main Layout')
       const currentPath = this.$route.fullPath
       // console.log(currentPath)
       if (currentPath === '/chat') return 'Chat'
@@ -157,43 +148,48 @@ export default {
       else if (currentPath === '/users') return 'Usuarios'
       else if (currentPath === '/profile') return 'Perfil'
       return 'Delicius Garden'
+    },
+    ruta () {
+      const currentPath = this.$route.fullPath
+      if (currentPath === '/' || currentPath === '/login') return true
+      return false
     }
   },
   methods: {
-    ...Vuex.mapActions('users', ['UserLogin', 'UserLogout']),
-    ...Vuex.mapActions('categories', ['getAllCategories'])
+    ...Vuex.mapActions('users', ['UserLogout'])
+    // ...Vuex.mapActions('categories', ['getAllCategories'])
     // async logout () {
     //   console.log('logout')
     //   await this.UserLogout(this.userLogin)
     // }
 
-  },
+  }
   // beforeCreate () {
   //   console.log('MainLayout BeforCreated ..........')
   //   // console.log('MainLayout BeforCreated ..........')
   // },
-  async created () {
-    try {
-      await this.UserLogin(this.$route.fullPath)
-      if (this.userLogin === null) {
-        if (this.$route.fullPath !== '/' && this.$route.fullPath !== '/login') {
-          this.$router.push('/login')
-        }
-      }
-    } catch (err) {
-      console.error('ERROR MainLayout')
-      console.log(err)
-      console.log('CREATED MainLayout. Salimos KO.')
-    }
-  },
-  begoreDestroy () {
-    // ///////////////
-    //    LOGOUT    //
-    // ///////////////
+  // async created () {
+  //   try {
+  //     await this.UserLogin(this.$route.fullPath)
+  //     if (this.userLogin === null) {
+  //       if (this.$route.fullPath !== '/' && this.$route.fullPath !== '/login') {
+  //         this.$router.push('/login')
+  //       }
+  //     }
+  //   } catch (err) {
+  //     console.error('ERROR MainLayout')
+  //     console.log(err)
+  //     console.log('CREATED MainLayout. Salimos KO.')
+  //   }
+  // },
+  // begoreDestroy () {
+  //   // ///////////////
+  //   //    LOGOUT    //
+  //   // ///////////////
 
-    // console.log('*********  DESTROYED *********')
-    // this.UserLogout(this.userLogin)
-  }
+  //   // console.log('*********  DESTROYED *********')
+  //   // this.UserLogout(this.userLogin)
+  // }
 }
 
 </script>
