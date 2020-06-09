@@ -11,3 +11,8 @@ export function setAllUsersMUT (state, data) {
   state.allUsers = data
   // console.log('commit "setUsersMUT" => setAllUsers : ' + JSON.stringify(state.allUsers))
 }
+
+export function setSelectUser (state, data) {
+  state.selectUser = data
+  // console.log('commit "setUsersMUT" => setAllUsers : ' + JSON.stringify(state.allUsers))
+}

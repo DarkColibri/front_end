@@ -8,6 +8,7 @@ import categories from './categories'
 import threads from './threads'
 import posts from './posts'
 import users from './users'
+import chat from './chat'
 
 /*
  * If not building with SSR mode, you can
@@ -29,7 +30,8 @@ export default store(function ({ Vue }) {
       categories,
       threads,
       posts,
-      users
+      users,
+      chat
     },
     state: {
       tituto: 'Ingeniero Informático'

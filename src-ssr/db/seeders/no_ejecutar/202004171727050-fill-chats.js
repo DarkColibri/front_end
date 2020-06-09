@@ -2,20 +2,23 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.bulkInsert('assocat', [
+    return queryInterface.bulkInsert('chats', [
       {
-        categoryId: 1,
-        associationId: 1,
+        user1: 1,
+        user2: 2,
         createdAt: new Date(),
         updatedAt: new Date()
-      }, {
-        categoryId: 1,
-        associationId: 2,
+      },
+      {
+        user1: 2,
+        user2: 3,
         createdAt: new Date(),
         updatedAt: new Date()
-      }, {
-        categoryId: 2,
-        associationId: 1,
+      },
+      {
+        from: 1,
+        to: 3,
+        text: 'Vaya fiesssshta anoche, no?',
         createdAt: new Date(),
         updatedAt: new Date()
       }
@@ -23,6 +26,6 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete('assocat', null, {})
+    return queryInterface.bulkDelete('chats', null, {})
   }
 }

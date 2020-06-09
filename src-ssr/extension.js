@@ -81,6 +81,12 @@ module.exports.extendApp = function ({ app, ssr }) {
   const postApi = require('./api/posts/posts.api')
   app.use('/api/posts', postApi)
 
+  const chatApi = require('./api/chats/chats.api')
+  app.use('/api/chats', chatApi)
+
+  const messagesApi = require('./api/messages/messages.api')
+  app.use('/api/messages', messagesApi)
+
   app.use(require('./routes/auth.routes'))
 
   const userApi = require('./api/users/users.api')

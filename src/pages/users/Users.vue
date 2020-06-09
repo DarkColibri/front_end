@@ -6,7 +6,7 @@
     separator>
       <q-item v-for="(user, key) in allUsers"
       :key="key"
-      to="/chat"
+      :to="'/chat/' + user.id"
       clickable
       v-ripple>
         <q-item-section avatar>

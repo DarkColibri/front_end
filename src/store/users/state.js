@@ -2,6 +2,7 @@
 export default function () {
   return {
     userLogin: null,
-    allUsers: []
+    allUsers: [],
+    selectUser: null
   }
 }

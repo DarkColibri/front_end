@@ -133,20 +133,25 @@ export default {
     EssentialLink
   },
   computed: {
-    ...Vuex.mapState('users', ['userLogin']),
+    ...Vuex.mapState('users', ['userLogin', 'selectUser']),
     title () {
       const currentPath = this.$route.fullPath
-      // console.log(currentPath)
-      if (currentPath === '/chat') return 'Chat'
-      else if (currentPath === '/auth') return 'Login'
+      let name = ''
+
+      if (this.selectUser !== null) {
+        name = this.selectUser.name
+      }
+
+      if (currentPath.includes('/chat')) return name
+      else if (currentPath.includes('/auth')) return 'Login'
       else if (currentPath.includes('/categories')) return 'Categorías'
       else if (currentPath.includes('/categories/add')) return 'Nueva Categoría'
-      else if (currentPath === '/threads') return 'Foros'
+      else if (currentPath.includes('/threads')) return 'Foros'
       else if (currentPath.includes('/threads/add')) return 'Nuevo Foro'
       else if (currentPath.includes('/posts/')) return 'Posts'
       else if (currentPath.includes('/associations')) return 'Asociaciones'
-      else if (currentPath === '/users') return 'Usuarios'
-      else if (currentPath === '/profile') return 'Perfil'
+      else if (currentPath.includes('/users')) return 'Usuarios'
+      else if (currentPath.includes('/profile')) return 'Perfil'
       return 'Delicius Garden'
     },
     ruta () {

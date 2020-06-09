@@ -68,6 +68,21 @@ export async function getAllUsers ({ commit }) {
     commit('setAllUsersMUT', null)
   }
 }
+// GET ALL USERS
+export async function getUserSelect ({ commit }, id) {
+  try {
+    // console.log('[GET ALL USERS] ' + URL)
+    // GET ALL users
+    const response = await axios.get(URL + id)
+    const { data } = response.data
+    console.log(data)
+
+    commit('setSelectUser', data)
+  } catch (error) {
+    console.error(error)
+    commit('setSelectUser', null)
+  }
+}
 // GET USER BY NAME PASSWORD
 export async function getUser ({ commit }, user) {
   try {
@@ -133,54 +148,6 @@ export async function deleteUser ({ commit }, id) {
     console.error(error)
   }
 }
-// // LOGIN
-// export async function UserLogin ({ commit }) {
-//   try {
-//     // GET USER LOGIN
-//     await axios.get('http://localhost:8080/api/users/getUserLogin')
-//       .then(response => {
-//         const user = response.data
-//         // console.log(user)
-//         user.online = true
-//         commit('setUserMUT', user)
-//         // UPDATE ONLINE
-//         axios.put(URL + user.id, user)
-//         if (this.$router.fullPath === '/login') {
-//           this.$router.push('/profile')
-//         }
-//       })
-//       .catch(() => {
-//         console.log('HHHH')
-//         commit('setUserMUT', null)
-//         if (this.$router.fullPath === '/' || this.$router.fullPath === '/login') {
-//         } else {
-//           this.$router.push('/login')
-//         }
-//       })
-//     // const response = await axios.get(URL)
-//     // const { data } = response.data
-//     // console.log('>>>>>> [USERS] ' + JSON.stringify(data))
-//     // commit('setAllUsersMUT', data)
-//   } catch (error) {
-//     commit('setUserMUT', null)
-//   }
-// }
-// // LOGOUT
-// export async function UserLogout ({ commit }, dataIn) {
-//   try {
-//     // Logout
-//     await axios.get('http://localhost:8080/logout')
-//     commit('setUserMUT', null)
-//     this.$router.push('/')
-//     // ONLINE = false
-//     const user = dataIn
-//     user.online = false
-//     await axios.put(URL + user.id, user)
-//   } catch (error) {
-//     commit('setUserMUT', null)
-//     this.$router.push('/')
-//   }
-// }
 
 export async function getNameUser ({ commit }, id) {
   // console.log('ACCTION - http://localhost:8080/api/threads/')
@@ -194,38 +161,3 @@ export async function getNameUser ({ commit }, id) {
     console.error(error.data)
   }
 }
-
-// export function handleAuthStateChanged ({ commit, dispatch, state }) {
-//   // COMPRUEBA SI USER LOGUED
-//   console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>')
-//   axios.get('http://localhost:8080/api/users/getUserLogin')
-//     .then(response => {
-//       // OBTENEMOS DATOS USUARIO
-//       const user = response.data
-//       console.log('>>>>>>>>>>> USER>> >>>>>>>>>>>>>>>>>>>>')
-//       console.log(user)
-//       console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>')
-//       if (user) {
-//         console.log('>>>>>>>>> Logged IN >>>>>>>>>>>>>>>>>>')
-//         // User is logged in.
-//         // HACEMOS COMMIT
-//         commit('setUserMUT', user)
-//         // ACTUALIZMOS EL USUARIO online
-//         // console.log('>>>>>>>>>>> ACTUALIZMOS EL USUARIO online')
-//         // user.online = true
-//         dispatch('updateUser', user.id, user)
-//         // OBTENEMOS USUARIOS
-//         console.log('>>>>>>>>>>> OBTENEMOS USUARIOS >>>>>>>>')
-//         dispatch('getAllUsers')
-//         // this.$router.push('/')
-//       } else {
-//         // User is logged out.
-//         console.log('>>>>>>>>> Logged UOT >>>>>>>>>>>>>>>>>')
-//         user.online = false
-//         dispatch('updateUser', state.userLogin.id, user)
-//         commit('setUserMUT', {})
-//         this.$router.replace('/login')
-//       }
-//       // axios.put(URL + data.id, data)
-//     })
-// }
